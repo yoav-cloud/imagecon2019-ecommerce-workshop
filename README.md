@@ -1,4 +1,46 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# imagecon2019-ecommerce-workshop
+
+## Admin Side (store manager)
+
+### Create new product
+		
+- ML widget (pick existing or upload new)
+- Tagging
+- Price
+- Discount 
+- Product title
+- Product description
+- Category
+- Place brand logo overlay by context
+
+## Customer Side
+
+### Product listing page (home)
+- Automatic break points
+- Srcset
+- Overlay showing discount
+- Auto Watermark (store name)
+- g-auto
+- Loading placeholder - progressive (talk to eric)
+- On hover turn image into video (using video player)
+
+### Product detail page
+- Product Gallery
+- Auto color change (color picker)
+- Overlay showing discount
+- Auto Watermark (store name)
+- Video & adaptive streaming
+
+### General
+- Responsive (2-3 breakpoints)
+
+#### Nice to have
+- Service worker (adaptive q-auto)
+- Overlay with dimensions - to emphasize different variants 
+- Cart UI (widget)
+	* g-auto
+
+
 
 ## Available Scripts
 
@@ -26,43 +68,3 @@ The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
