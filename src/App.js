@@ -1,8 +1,10 @@
-import React, {Component} from 'react';
-import {observer} from "mobx-react";
-import {StoreContext} from "./store/storeContext";
+import React, {Component} from "react";
+import {observer, inject} from "mobx-react";
+import { Switch, Route } from "react-router"
+import { Link } from "react-router-dom";
 
-import './App.css';
+
+// import './App.css';
 
 const ProductView = observer(({product}) => {
 	console.log("!!!! RENDERING PRODUCT VIEW", product.title);
@@ -28,38 +30,61 @@ const ProductList = observer(({products}) => {
 	);
 });
 
+const Home = () =>
+	 <div>
+		<h1>HOME!!!!</h1>
+		 <Link to="/about">About</Link>
+	</div>;
+
+
+const About = () =>
+	<div>
+		<h1>ABOUT!!!!</h1>
+		<Link to="/">Home</Link>
+	</div>;
+
+
 class App extends Component {
 
-	static contextType = StoreContext;
+	// static contextType = StoreContext;
 
 	componentDidMount() {
+		const appData = this.props.appData;
 
-		const store = this.context;
-
-		store.appData.addProduct({
+		// const store = this.context;
+		appData.addProduct({
 			id: "am3",
 			title: "Air Max 3",
 		});
 
-		store.appData.addProduct({
+		appData.addProduct({
 			id: "aj7",
 			title: "Air Jordan 7",
 		});
 	}
 
 	render() {
-		console.log("!!!! RENDERING APP");
+		console.log("!!!! RENDERING APP", this.props);
 
 		return (
 			<div className="App">
-				<header className="App-header">
-					<h1>Cloudinary's Ecommerce Store</h1>
-				</header>
 
-				<ProductList products={this.context.appData.products}/>
+				<Switch>
+					<Route exact path="/" component={Home}/>
+					<Route path="/about" component={About}/>
+					{/*<Route path="/:user" component={User}/>*/}
+					{/*<Route component={NoMatch}/>*/}
+				</Switch>
+
+
+				{/*<header className="App-header">*/}
+					{/*<h1>Cloudinary's Ecommerce Store</h1>*/}
+				{/*</header>*/}
+
+				{/*<ProductList products={this.props.appData.products}/>*/}
 			</div>
 		);
 	}
 }
 
-export default App;
+export default inject("appData")(App);
