@@ -1,8 +1,6 @@
 const crypto = require("crypto");
 
-module.exports = (req, info) => {
-
-	const apiSecret = process.env.CLD_SECRET;
+module.exports = () => {
 
 	const params = {
 		cloud_name: process.env.CLD_CLOUD,
@@ -16,15 +14,15 @@ module.exports = (req, info) => {
 		.join("&");
 
 	const hash = crypto.createHash("sha256");
-	hash.update(str + apiSecret);
+	hash.update(str + process.env.CLD_SECRET);
 
 	const signature = hash.digest("hex");
 
 	return {
 		response: {
+			...params,
 			signature,
 			api_key: process.env.CLD_KEY,
-			...params,
 		}
 	};
 };

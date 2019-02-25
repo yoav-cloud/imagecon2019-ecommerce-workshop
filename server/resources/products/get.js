@@ -28,11 +28,13 @@ module.exports = (req, info) => {
 			.reduce((res, item) => {
 
 				const pId = last(item.folder.split("/")),
-					product = (res[pId] ? res[pId] : {});
+					product = (res[pId] ? res[pId] : {items: []});
 
 				res[pId] = {
+					...res[pId],
 					...item.context,
-					items: [...product.items,
+					items: [
+						...product.items,
 						{
 							...pick(item, ITEM_PROPS),
 						}]
@@ -41,7 +43,10 @@ module.exports = (req, info) => {
 				return res;
 			}, {});
 
-		return Object.values(products);
+		return {
+			products: Object.values(products),
+			itemCount: result.resources.length,
+		};
 	};
 
 	return doSearch()
@@ -59,47 +64,3 @@ module.exports = (req, info) => {
 			}
 		}))
 };
-
-//
-// module.exports = (req, info) => {
-//
-// 	// const cl = core.Cloudinary.new( { cloud_name: "yoav-cloud"});
-// 	// console.log("video tag = ", cl.videoTag("test.mkv").toHtml());
-//
-// 	const cursor = info.params.cursor;
-//
-// 	if (cursor) {
-// 		console.log("!!!!!!!!!!!! RECEIVED NEXT CURSOR - ", cursor);
-// 	}
-//
-// 	return cloudinary.search({
-// 		cursor,
-// 		tags: [process.env.CLD_TAG],
-// 		max: 100,
-// 	})
-// 		.then((result) => {
-//
-// 			console.log("!!!!!!!!! returned from search - ", {
-// 				...result,
-// 				resources: "",
-// 				items: result.resources.length,
-// 			});
-//
-// 			return {
-// 				response: {
-// 					error: !!result.error,
-// 					photos: result.error ? [] : result.resources.map((p) => ({
-// 						...p,
-// 						price: (Math.ceil(Math.random() * 10) + Math.random()).toFixed(2),
-// 					})),
-// 					meta: {
-// 						next: result.next_cursor,
-// 						count: result.total_count,
-// 						limit: result.rate_limit_allowed,
-// 						limitReset: result.rate_limit_reset_at,
-// 						remaining: result.rate_limit_remaining,
-// 					},
-// 				}
-// 			}
-// 		});
-// };
