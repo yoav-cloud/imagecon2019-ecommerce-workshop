@@ -1,10 +1,8 @@
 import React, {Component} from "react";
 import {observer, inject} from "mobx-react";
-import { Switch, Route } from "react-router"
-import { Link } from "react-router-dom";
+import {Switch, Route} from "react-router"
+import {Link} from "react-router-dom";
 
-
-// import './App.css';
 
 const ProductView = observer(({product}) => {
 	console.log("!!!! RENDERING PRODUCT VIEW", product.title);
@@ -31,18 +29,31 @@ const ProductList = observer(({products}) => {
 });
 
 const Home = () =>
-	 <div>
-		<h1>HOME!!!!</h1>
-		 <Link to="/about">About</Link>
-	</div>;
-
-
-const About = () =>
 	<div>
-		<h1>ABOUT!!!!</h1>
-		<Link to="/">Home</Link>
+		<h1>HOME!!!!</h1>
+		<Link to={{
+			pathname: "about",
+			state: {
+				product: "aaa",
+			}
+		}}>About</Link>
 	</div>;
 
+
+const About = inject("routing")((props) => {
+
+	console.log("!!!!!!!!!!!! ABOUT PROPS = ", props);
+
+	return <div>
+		<h1>ABOUT!!!!</h1>
+
+		<div>
+
+		</div>
+
+		<Link to="/">Home</Link>
+	</div>
+});
 
 class App extends Component {
 
@@ -78,7 +89,7 @@ class App extends Component {
 
 
 				{/*<header className="App-header">*/}
-					{/*<h1>Cloudinary's Ecommerce Store</h1>*/}
+				{/*<h1>Cloudinary's Ecommerce Store</h1>*/}
 				{/*</header>*/}
 
 				{/*<ProductList products={this.props.appData.products}/>*/}
