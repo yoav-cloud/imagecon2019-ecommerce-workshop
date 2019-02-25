@@ -14,12 +14,14 @@ const ITEM_PROPS = [
 
 const last = (arr) => arr[arr.length - 1];
 
+const productsFolder = "Products";
+
 module.exports = (req, info) => {
 
 	const doSearch = () =>
 		cloudinary.search({
 			with_field: "context",
-			publicId: "Products*",
+			publicId: `${productsFolder}*`,
 			max: 1000,
 		});
 
@@ -30,15 +32,18 @@ module.exports = (req, info) => {
 				const pId = last(item.folder.split("/")),
 					product = (res[pId] ? res[pId] : {items: []});
 
-				res[pId] = {
-					...res[pId],
-					...item.context,
-					items: [
-						...product.items,
-						{
-							...pick(item, ITEM_PROPS),
-						}]
-				};
+				//only include items in a sub-folder
+				if (pId !== productsFolder.toLowerCase()) {
+					res[pId] = {
+						...res[pId],
+						...item.context,
+						items: [
+							...product.items,
+							{
+								...pick(item, ITEM_PROPS),
+							}]
+					};
+				}
 
 				return res;
 			}, {});
@@ -46,6 +51,8 @@ module.exports = (req, info) => {
 		return {
 			products: Object.values(products),
 			itemCount: result.resources.length,
+			rateRest: result.rate_limit_reset_at,
+			rateRemaining: result.rate_limit_remaining,
 		};
 	};
 
