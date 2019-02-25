@@ -17,15 +17,19 @@ const search = (options) => {
 		...options,
 	};
 
+	const publicId = q.publicId ? ` public_id:${q.publicId} ` : "";
+	const rType = q.type ? ` resource_type:${q.type} ` : "";
+	const folder = q.folder ? ` folder:${q.folder} ` : "";
 	const tags = q.tags && q.tags.length ?
 		`AND ` + q.tags.map((t) => `tags=${t}`).join(" AND ") : "";
 
-	const exp = `resource_type:${q.type} ${tags} ${q.text ? "AND " + q.text : ""}`;
+	const exp = `${publicId}${rType}${tags}${folder}${q.text ? ` AND ${q.text} ` : ""}`;
 
 	console.info(colors.yellow(`issuing search query: ${exp}`));
 
 	return cloudinary.v2.search
 		.expression(exp)
+		.with_field(q.with_field)
 		.next_cursor(q.cursor)
 		.sort_by("uploaded_at")
 		.max_results(options.max)
