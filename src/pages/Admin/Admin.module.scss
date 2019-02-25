@@ -1,0 +1,40 @@
+fieldset {
+    margin: 100px;
+    border: 1px solid black;
+
+    legend {
+        width: auto;
+    }
+}
+
+.inputWrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+    font-size: 16px;
+
+    input, select {
+        margin-bottom: 20px;
+    }
+
+    input {
+        width: 300px;
+
+        &[type='number'] {
+            width: 70px;
+        }
+    }
+    select {
+        width: 150px;
+    }
+
+    button {
+        height: 40px;
+        width: 100px;
+        background: #D10024;
+        color: #FFF;
+        font-weight: 700;
+        border: none;
+        border-radius: 5px;
+    }
+}
