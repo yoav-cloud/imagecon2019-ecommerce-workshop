@@ -2,7 +2,7 @@ const cloudinary = require("cloudinary"),
 	colors = require("colors/safe");
 
 cloudinary.config({
-	cloud_name: "yoav-cloud",
+	cloud_name: process.env.CLD_CLOUD,
 	api_key: process.env.CLD_KEY,
 	api_secret: process.env.CLD_SECRET,
 });
@@ -10,7 +10,7 @@ cloudinary.config({
 const search = (options) => {
 
 	const q = {
-		type: "image",
+		// type: "image",
 		tags: [],
 		text: "",
 		max: 50,
@@ -36,6 +36,19 @@ const search = (options) => {
 		})
 };
 
+const update = (id, options) => {
+
+	return cloudinary.v2.api.update(id,
+		{
+			...options
+		})
+		.catch((error) => {
+			console.error("FAILED TO UPDATE !!!!!!!!!!", error);
+			return {error: true};
+		});
+};
+
 module.exports = {
 	search,
+	update,
 };
