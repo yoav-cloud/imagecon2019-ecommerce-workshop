@@ -10,7 +10,7 @@ const ProductGrid = ({products}) => {
 	return (
 		<div className={styles.grid}>
 			{products.map(p => (
-				<GridItem key={p.id} product={p}/>
+				<GridItem key={p.id + p.name} product={p}/>
 			))}
 		</div>
 	);

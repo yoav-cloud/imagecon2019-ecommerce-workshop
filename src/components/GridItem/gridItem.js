@@ -1,34 +1,49 @@
 import React from "react";
 import {observer} from "mobx-react";
+import cloudinary from "../../services/cloudinary";
 
 import styles from "./gridItem.module.scss";
 
 const calculateDiscountPrice = ({price, discount}) =>
-	parseFloat(price) * (parseFloat(discount) / 100);
+	(parseFloat(price) * (parseFloat(discount) / 100))
+		.toFixed(1);
 
-const GridItem = ({ product }) => {
-	console.log("!!!! RENDERING PRODUCT VIEW", product.name);
+const renderProductImage = ({name, items}) => {
+	const image = items.find((i) => i.resource_type === "image");
+
+	const url = image ?
+		cloudinary.url(image.public_id, {
+			crop: "fit",
+			width: 260,
+			dpr: 2
+		}) : null;
+
+	return url && <img src={url} alt={name}/>;
+};
+
+const GridItem = ({product}) => {
 
 	return (
 		<div className={styles.product}>
 			<div className={styles.image}>
-				<img src="./img/product01.png" alt="" />
-					<div className={styles.label}>
-						{product.discount ?
-							<span className="sale">-{product.discount}%</span> : null}
-						<span className="new">NEW</span>
-					</div>
+				{renderProductImage(product)}
+				<div className={styles.label}>
+					{product.discount ?
+						<span className={styles.sale}>-{product.discount}%</span> : null}
+					<span className={styles.new}>NEW</span>
+				</div>
 			</div>
+
 			<div className={styles.body}>
 				<p className={styles.category}>Category</p>
 				<h3 className={styles.name}>
 					<a href="#">{product.name}</a>
 				</h3>
 				<h4 className={styles.price}>
+					${product.discount ?
+					calculateDiscountPrice(product) : product.price}
 					{product.discount ?
-						calculateDiscountPrice(product) : product.price}
-					{product.discount ?
-						<del className={styles["old-price"]}>{product.price}</del> : null}
+						<del className={styles["old-price"]}>${product.price}</del> : null}
 				</h4>
 
 				<div className={styles.buttons}>

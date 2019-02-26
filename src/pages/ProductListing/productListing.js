@@ -1,8 +1,16 @@
 import React, {useEffect} from "react";
-import {inject, observer} from "mobx-react";
+import {observable} from "mobx";
+import {inject, observer, } from "mobx-react";
+import {useObservable, useObserver} from "mobx-react-lite";
 import ProductGrid from "../../components/ProductGrid/productGrid";
 
 const ProductListingPage = (props) => {
+
+	// const productCount = useObservable({count: props.appData.products.length});
+
+	// const count =  observable.box(props.appData.products.length);
+
+	// console.log("!!!!!!!!!!! products count 1!!!!!", productCount);
 
 	useEffect(() => {
 		props.appData.fetchProducts();
@@ -42,7 +50,8 @@ const ProductListingPage = (props) => {
 					<ProductGrid products={props.appData.products} />
 
 					<div className="store-filter clearfix">
-						<span className="store-qty">Showing 20-100 products</span>
+						{useObserver(()=> <span className="store-qty">
+							Showing {props.appData.products.length} products</span>)}
 						<ul className="store-pagination">
 							<li className="active">1</li>
 							<li><a href="#">2</a></li>
@@ -55,16 +64,6 @@ const ProductListingPage = (props) => {
 			</div>
 		</div>
 	</div>;
-
-
-
-	//
-	// <div>
-	// 	<h1>PLP !!!!!!!!!!</h1>
-	//
-	// 	<ProductList products={props.appData.products}/>
-	// </div>
-	//
 };
 
 
