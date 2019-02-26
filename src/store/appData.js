@@ -1,5 +1,6 @@
 import {observable, action} from "mobx";
 import bindObjectProps from "./bindObjectProps";
+import request from "../services/api";
 
 const getObservableWithActions = (obj) =>
 	observable(...bindObjectProps(obj));
@@ -7,30 +8,40 @@ const getObservableWithActions = (obj) =>
 const createProduct = (data) =>
 	getObservableWithActions({
 		id: "",
-		title: "",
-		description: "",
+		name: "",
 		price: 0,
 		discount: 0,
-		media: [],
+		items: [],
 		...data,
 	});
 
 const products = observable([]);
 
-const addProduct = action((product)=>
-	products.push(createProduct(product)));
+const addProduct = action((...newProducts) => {
+	products.replace(products.concat(newProducts));
+	console.log("!!!!! APP DATA !!!!!!!! products = ", products);
+});
+
+const fetchProducts = () => {
+	request("/products")
+		.then((result) => {
+			addProduct(...result.products);
+		})
+		.catch((error) => {
+			console.log("!!!!!!!!!! ERROR ", error);
+		});
+};
 
 const cart = observable({
-	//ids of
+		//ids of
 		products: [],
 	},
-	{
-
-	});
+	{});
 
 export {
 	createProduct,
 	addProduct,
+	fetchProducts,
 	products,
 	cart,
 }
