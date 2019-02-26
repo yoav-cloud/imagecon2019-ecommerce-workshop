@@ -2323,6 +2323,11 @@ cloudinary-core@^2.3.0:
   resolved "https://registry.yarnpkg.com/cloudinary-core/-/cloudinary-core-2.6.0.tgz#9e0a6ac218bd336743e8b8750083388c707062ab"
   integrity sha512-4NmmyPcQGGf3u2xskCfM+YNPvzce1bbdF8wcfzmkEbSHcc2pd4haFcul9wSiXYqkViRkuvf35u9FJOXMEqUcPA==
 
+cloudinary-core@^2.6.2:
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/cloudinary-core/-/cloudinary-core-2.6.2.tgz#e034877e65bab554e23e5ef215f091f27630e507"
+  integrity sha512-oS+qniwbRVrDO6va4BNStkyunVbr1YQJarFlas19208tLUZE8DOxFO0fSE6Mx9zNfcwU6Cpm8x9FtVdtiwB/MA==
+
 cloudinary-react@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/cloudinary-react/-/cloudinary-react-1.1.0.tgz#fc31c678c26bafb46b1967563aee5dbf9d915d41"

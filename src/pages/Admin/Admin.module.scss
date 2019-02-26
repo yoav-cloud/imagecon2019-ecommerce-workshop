@@ -1,31 +1,79 @@
-fieldset {
-    margin: 100px;
-    border: 1px solid black;
-
-    legend {
-        width: auto;
-    }
-}
-
-.inputWrapper {
+.admin {
     display: flex;
     flex-direction: column;
-    margin: 30px;
-    font-size: 16px;
 
-    input, select {
-        margin-bottom: 20px;
-    }
+    .newProductForm {
+        display: flex;
+        align-self: center;
 
-    input {
-        width: 300px;
+        fieldset {
+            margin: 20px;
+            border: 1px solid black;
+            height: 100%;
 
-        &[type='number'] {
-            width: 70px;
+            legend {
+                width: auto;
+            }
+
+            &.details {
+                width: 500px;
+            }
+
+            &.images {
+                width: 300px;
+            }
         }
-    }
-    select {
-        width: 150px;
+
+        .success {
+            text-align: center;
+            font-weight: 900;
+            color: green;
+        }
+
+        .error {
+            text-align: center;
+            font-weight: 900;
+            color: red;
+        }
+
+        .inputWrapper {
+            display: flex;
+            flex-direction: column;
+            margin: 30px;
+            font-size: 16px;
+
+            input, select {
+                margin-bottom: 20px;
+            }
+
+            input {
+                width: 300px;
+
+                &[type='number'] {
+                    width: 70px;
+                }
+            }
+            select {
+                width: 150px;
+            }
+        }
+
+        .thumbsList {
+            display: flex;
+
+            .thumbWrapper {
+                display: flex;
+                border: 1px solid black;
+                width: 100px;
+                height: 100px;
+                overflow: hidden;
+                cursor: pointer;
+                margin-bottom: 20px;
+                margin-right: 20px;
+                text-align: center;
+                align-items: center;
+            }
+        }
     }
 
     button {
@@ -36,5 +84,11 @@ fieldset {
         font-weight: 700;
         border: none;
         border-radius: 5px;
+
+        &.mlWidget, &.saveBtn {
+            align-self: center;
+            margin-bottom: 20px;
+            width: 150px;
+        }
     }
 }
