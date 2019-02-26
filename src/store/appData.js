@@ -21,10 +21,16 @@ const addProduct = action((...newProducts) => {
 	products.replace(products.concat(newProducts));
 });
 
+const setProducts = action((newProducts) => {
+	products.replace(newProducts);
+
+	console.log("!!!!!!!!!! ", {newProducts, products});
+});
+
 const fetchProducts = () => {
 	request("/products")
 		.then((result) => {
-			addProduct(...result.products
+			setProducts(result.products
 				.filter((p)=>p.name));
 		})
 		.catch((error) => {
