@@ -1,16 +1,9 @@
 import React, {useEffect} from "react";
-import {observable} from "mobx";
 import {inject, observer, } from "mobx-react";
 import {useObservable, useObserver} from "mobx-react-lite";
 import ProductGrid from "../../components/ProductGrid/productGrid";
 
 const ProductListingPage = (props) => {
-
-	// const productCount = useObservable({count: props.appData.products.length});
-
-	// const count =  observable.box(props.appData.products.length);
-
-	// console.log("!!!!!!!!!!! products count 1!!!!!", productCount);
 
 	useEffect(() => {
 		props.appData.fetchProducts();
