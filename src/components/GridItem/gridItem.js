@@ -7,7 +7,7 @@ import cloudinary from "../../services/cloudinary";
 import styles from "./gridItem.module.scss";
 
 const calculateDiscountPrice = ({price, discount}) =>
-	(parseFloat(price) * (parseFloat(discount) / 100))
+	(price - (parseFloat(price) * (parseFloat(discount) / 100)))
 		.toFixed(1);
 
 const renderProductImage = ({name, items}) => {
