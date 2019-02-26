@@ -23,15 +23,13 @@ const addProduct = action((...newProducts) => {
 
 const setProducts = action((newProducts) => {
 	products.replace(newProducts);
-
-	console.log("!!!!!!!!!! ", {newProducts, products});
 });
 
 const fetchProducts = () => {
 	request("/products")
 		.then((result) => {
 			setProducts(result.products
-				.filter((p)=>p.name));
+				.filter((p) => p.name));
 		})
 		.catch((error) => {
 			console.log("!!!!!!!!!! ERROR ", error);
