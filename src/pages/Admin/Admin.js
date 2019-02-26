@@ -1,7 +1,7 @@
 import React from "react";
 import { observer, inject } from "mobx-react";
 import { omit, pick } from "lodash";
-import { execute } from "../../services/api";
+import request from "../../services/api";
 import { init as initMediaLibraryWidget } from "../../services/mlwidget";
 import styles from "./Admin.module.scss";
 
@@ -23,8 +23,7 @@ class Admin extends React.Component<Props, State> {
   };
 
   onSubmit = async () => {
-    const res = await execute({
-      action: "/products",
+    const res = await request("/products",{
       method: "POST",
       bodyParams: {
         ...pick(this.state, PRODUCT_ATTRIBUTES),

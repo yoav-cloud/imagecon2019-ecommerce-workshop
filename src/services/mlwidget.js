@@ -1,4 +1,4 @@
-import { execute } from "./api";
+import request from "./api";
 
 const init = async (button: string) => {
   const callback = params => {
@@ -7,7 +7,7 @@ const init = async (button: string) => {
     console.log("XXXXXXXXXXXX", ml);
     return ml;
   };
-  const serverParams = await execute({ action: "/signature", method: "GET" });
+  const serverParams = await request("/signature");
   console.log("XXXXXXXXXXXX", serverParams);
 };
 
