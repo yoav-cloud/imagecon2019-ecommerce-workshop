@@ -5,11 +5,12 @@
     .newProductForm {
         display: flex;
         align-self: center;
+        height: 430px;
 
         fieldset {
             margin: 20px;
             border: 1px solid black;
-            height: 100%;
+            // height: 100%;
 
             legend {
                 width: auto;
@@ -20,8 +21,21 @@
             }
 
             &.images {
-                width: 300px;
+                width: 260px;
+                height: 300px;
+
+                .imagesContainer {
+
+                }
             }
+
+        }
+
+        .controls {
+            margin: 20px;
+            height: 70px;
+            display: flex;
+            flex-direction: column;
         }
 
         .success {
@@ -60,6 +74,10 @@
 
         .thumbsList {
             display: flex;
+            flex-wrap: wrap;
+            margin-left: 18px;
+            height: 232px;
+            overflow: scroll;
 
             .thumbWrapper {
                 display: flex;
@@ -72,6 +90,7 @@
                 margin-right: 20px;
                 text-align: center;
                 align-items: center;
+                font-size: 16px;
             }
         }
     }

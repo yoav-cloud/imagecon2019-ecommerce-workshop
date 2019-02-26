@@ -84,6 +84,12 @@ class Admin extends React.Component<Props, State> {
 
   renderProductImagesWidget = () => (
     <div className={styles.thumbsList}>
+      <div
+        className={styles.thumbWrapper}
+        onClick={() => this.uploadWidget && this.uploadWidget.open && this.uploadWidget.open()}
+      >
+        Add An Image
+      </div>
       {this.state.items.map(item => (
         <div className={styles.thumbWrapper}>
           <img
@@ -96,12 +102,6 @@ class Admin extends React.Component<Props, State> {
           />
         </div>
       ))}
-      <div
-        className={styles.thumbWrapper}
-        onClick={() => this.uploadWidget && this.uploadWidget.open && this.uploadWidget.open()}
-      >
-        Add An Image
-      </div>
     </div>
   );
 
@@ -114,33 +114,34 @@ class Admin extends React.Component<Props, State> {
             <legend align="center">Product Details</legend>
             <div className={styles[`${status}`]}>{STATUS_MESSAGE[status]}</div>
             <div className={styles.inputWrapper}>
-              name:
+              Name:
               <input name="name" type="text" value={this.state.name} onChange={this.onChange} />
-              price:
+              Price:
               <input name="price" type="number" min="0" value={this.state.price} onChange={this.onChange} />
-              brand:
+              Brand:
               {this.renderSelectBrand()}
-              discount:
+              Discount:
               <input name="discount" type="number" min="0" max="100" value={this.state.discount} onChange={this.onChange} />
             </div>
           </fieldset>
           <div style={{ display: "flex", flexDirection: "column" }}>
             <fieldset className={styles.images}>
               <legend align="center">Product Images</legend>
-              <div className={styles[`${status}`]}>{STATUS_MESSAGE[status]}</div>
-              <div className={styles.inputWrapper}>{this.renderProductImagesWidget()}</div>
+              <div className={styles.imagesContainer}>{this.renderProductImagesWidget()}</div>
             </fieldset>
-            <button className={styles.saveBtn} onClick={this.onSubmit}>
-              Save!
-            </button>
-            <button
-              className={styles.mlWidget}
-              onClick={() => {
-                this.mlWidget && this.mlWidget.show && this.mlWidget.show();
-              }}
-            >
-              Media Library
-            </button>
+            <div className={styles.controls}>
+              <button className={styles.saveBtn} onClick={this.onSubmit}>
+                Save!
+              </button>
+              {/* <button
+                className={styles.mlWidget}
+                onClick={() => {
+                  this.mlWidget && this.mlWidget.show && this.mlWidget.show();
+                }}
+              >
+                Media Library
+              </button> */}
+            </div>
           </div>
         </div>
       </div>

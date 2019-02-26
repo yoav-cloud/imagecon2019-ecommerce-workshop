@@ -4,8 +4,7 @@ import { Switch, Route } from "react-router";
 import { Link } from "react-router-dom";
 import Admin from "./pages/Admin/Admin";
 import ProductListingPage from "./pages/ProductListing/productListing";
-
-
+import ProductPage from "./components/Product/Product";
 
 // const Home = () => (
 //   <div>
@@ -64,6 +63,7 @@ class App extends Component {
           <Route exact path="/" component={ProductListingPage} />
           <Route path="/about" component={About} />
           <Route path="/admin" component={Admin} />
+          <Route path="/product" component={ProductPage} />
           {/*<Route path="/:user" component={User}/>*/}
           {/*<Route component={NoMatch}/>*/}
         </Switch>
