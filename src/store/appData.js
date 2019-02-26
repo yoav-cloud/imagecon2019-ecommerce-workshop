@@ -19,13 +19,13 @@ const products = observable([]);
 
 const addProduct = action((...newProducts) => {
 	products.replace(products.concat(newProducts));
-	console.log("!!!!! APP DATA !!!!!!!! products = ", products);
 });
 
 const fetchProducts = () => {
 	request("/products")
 		.then((result) => {
-			addProduct(...result.products);
+			addProduct(...result.products
+				.filter((p)=>p.name));
 		})
 		.catch((error) => {
 			console.log("!!!!!!!!!! ERROR ", error);
