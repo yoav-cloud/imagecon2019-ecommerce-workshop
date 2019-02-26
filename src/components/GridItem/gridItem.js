@@ -1,4 +1,5 @@
 import React from "react";
+import {toJS} from "mobx";
 import {observer} from "mobx-react";
 import {Link} from "react-router-dom";
 import cloudinary from "../../services/cloudinary";
@@ -27,7 +28,7 @@ const GridItem = ({product}) => (
 		<Link to={{
 			pathname: "/product",
 			state: {
-				product,
+				product: toJS(product),
 			},
 		}}>
 			<div className={styles.image}>
