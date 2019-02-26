@@ -62,7 +62,7 @@ class App extends Component {
       <div className="App">
         <Switch>
           <Route exact path="/" component={ProductListingPage} />
-          <Route path="/about" component={About} />
+          <Route path="/product" component={About} />
           <Route path="/admin" component={Admin} />
           {/*<Route path="/:user" component={User}/>*/}
           {/*<Route component={NoMatch}/>*/}

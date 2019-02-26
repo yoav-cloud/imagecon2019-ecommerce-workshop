@@ -1,5 +1,6 @@
 import React from "react";
 import {observer} from "mobx-react";
+import {Link} from "react-router-dom";
 import cloudinary from "../../services/cloudinary";
 
 import styles from "./gridItem.module.scss";
@@ -21,18 +22,23 @@ const renderProductImage = ({name, items}) => {
 	return url && <img src={url} alt={name}/>;
 };
 
-const GridItem = ({product}) => {
-
-	return (
+const GridItem = ({product}) => (
 		<div className={styles.product}>
-			<div className={styles.image}>
-				{renderProductImage(product)}
-				<div className={styles.label}>
-					{product.discount ?
-						<span className={styles.sale}>-{product.discount}%</span> : null}
-					<span className={styles.new}>NEW</span>
+			<Link to={{
+				pathname: "/product",
+				state: {
+					productId: product.id,
+				},
+			}}>
+				<div className={styles.image}>
+					{renderProductImage(product)}
+					<div className={styles.label}>
+						{product.discount ?
+							<span className={styles.sale}>-{product.discount}%</span> : null}
+						<span className={styles.new}>NEW</span>
+					</div>
 				</div>
-			</div>
+			</Link>
 
 			<div className={styles.body}>
 				<p className={styles.category}>Category</p>
@@ -68,6 +74,5 @@ const GridItem = ({product}) => {
 			</div>
 		</div>
 	);
-};
 
 export default observer(GridItem);
