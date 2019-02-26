@@ -1,5 +1,7 @@
 import React from "react";
 import { propTypes } from "mobx-react";
+import { calculateDiscountPrice } from "../../helpers";
+import ProductGallery from "./ProductGallery/ProductGallery";
 
 const Star = () => (
   <svg style={{ backgroundColor: "red" }} version="1.1" width="21px" height="20px">
@@ -11,134 +13,114 @@ const Star = () => (
   </svg>
 );
 
-const Product = (props: Object) => {
-  props = { ...{ product: { name: "Coffee Mug", price: 1000 } }, ...props };
+const Product = ({ location }: Object) => {
+  const product = { ...{ name: "Coffee Mug", price: 1000, discount: 10 }, ...(location.state ? location.state.product : {}) };
   return (
     <div className="section">
       <div className="container">
         <div className="row">
-          <div className="col-md-5 col-md-push-2">
-            <div id="product-main-img">
-              <div className="product-preview">
-                <img src="./img/product08.png" alt="" />
-              </div>
+          <div style={{ display: "flex" }}>
+            <div className="prductPreview">
+              <ProductGallery />
             </div>
-          </div>
-
-          <div className="col-md-2  col-md-pull-5">
-            <div id="product-imgs">
-              <div className="product-preview">
-                <img src="./img/product01.png" alt="" />
-              </div>
-              <div className="product-preview">
-                <img src="./img/product03.png" alt="" />
-              </div>
-              <div className="product-preview">
-                <img src="./img/product06.png" alt="" />
-              </div>
-              <div className="product-preview">
-                <img src="./img/product08.png" alt="" />
-              </div>
-            </div>
-          </div>
-
-          <div className="col-md-5">
-            <div className="product-details">
-              <h2 className="product-name">product name goes here</h2>
-              <div>
-                <div className="product-rating">
-                  <Star />
-                  <Star />
-                  <Star />
-                  <Star />
-                  <Star />
-                </div>
-                <a className="review-link" href="#">
-                  10 Review(s) | Add your review
-                </a>
-              </div>
-              <div>
-                <h3 className="product-price">
-                  {props.product.price} <del className="product-old-price">$990.00</del>
-                </h3>
-                <span className="product-available">In Stock</span>
-              </div>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat.
-              </p>
-              <div className="product-options">
-                <label>
-                  Size
-                  <select className="input-select">
-                    <option value="0">X</option>
-                  </select>
-                </label>
-                <label>
-                  Color
-                  <select className="input-select">
-                    <option value="0">Red</option>
-                  </select>
-                </label>
-              </div>
-              <div className="add-to-cart">
-                <div className="qty-label">
-                  Qty
-                  <div className="input-number">
-                    <input type="number" />
-                    <span className="qty-up">+</span>
-                    <span className="qty-down">-</span>
+            <div className="">
+              <div className="product-details">
+                <h2 className="product-name">{product.name}</h2>
+                <div>
+                  <div className="product-rating">
+                    <Star />
+                    <Star />
+                    <Star />
+                    <Star />
+                    <Star />
                   </div>
+                  <a className="review-link" href="#">
+                    10 Review(s) | Add your review
+                  </a>
                 </div>
-                <button className="add-to-cart-btn">
-                  <i className="fa fa-shopping-cart" /> add to cart
-                </button>
+                <div>
+                  <h3 className="product-price">
+                    {calculateDiscountPrice(product)} <del className="product-old-price">{`$${product.price}`}</del>
+                  </h3>
+                  <span className="product-available">In Stock</span>
+                </div>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                  magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                  consequat.
+                </p>
+                <div className="product-options">
+                  <label>
+                    Size
+                    <select className="input-select">
+                      <option value="0">X</option>
+                    </select>
+                  </label>
+                  <label>
+                    Color
+                    <select className="input-select">
+                      <option value="0">Red</option>
+                    </select>
+                  </label>
+                </div>
+                <div className="add-to-cart">
+                  <div className="qty-label">
+                    Qty
+                    <div className="input-number">
+                      <input type="number" />
+                      <span className="qty-up">+</span>
+                      <span className="qty-down">-</span>
+                    </div>
+                  </div>
+                  <button className="add-to-cart-btn">
+                    <i className="fa fa-shopping-cart" /> add to cart
+                  </button>
+                </div>
+                <ul className="product-btns">
+                  <li>
+                    <a href="#">
+                      <i className="fa fa-heart-o" /> add to wishlist
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i className="fa fa-exchange" /> add to compare
+                    </a>
+                  </li>
+                </ul>
+                <ul className="product-links">
+                  <li>Category:</li>
+                  <li>
+                    <a href="#">Headphones</a>
+                  </li>
+                  <li>
+                    <a href="#">Accessories</a>
+                  </li>
+                </ul>
+                <ul className="product-links">
+                  <li>Share:</li>
+                  <li>
+                    <a href="#">
+                      <i className="fa fa-facebook" />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i className="fa fa-twitter" />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i className="fa fa-google-plus" />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i className="fa fa-envelope" />
+                    </a>
+                  </li>
+                </ul>
               </div>
-              <ul className="product-btns">
-                <li>
-                  <a href="#">
-                    <i className="fa fa-heart-o" /> add to wishlist
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-exchange" /> add to compare
-                  </a>
-                </li>
-              </ul>
-              <ul className="product-links">
-                <li>Category:</li>
-                <li>
-                  <a href="#">Headphones</a>
-                </li>
-                <li>
-                  <a href="#">Accessories</a>
-                </li>
-              </ul>
-              <ul className="product-links">
-                <li>Share:</li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-facebook" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-twitter" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-google-plus" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fa fa-envelope" />
-                  </a>
-                </li>
-              </ul>
             </div>
           </div>
 
