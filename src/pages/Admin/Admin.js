@@ -33,79 +33,87 @@ const STATUS_MESSAGE = {
   error: "Product failed to update..."
 };
 
+const Button = ({ title, onClick }) => (
+  <div className={styles.thumbWrapper} onClick={onClick}>
+    {title}
+  </div>
+);
+
 class Admin extends React.Component<Props, State> {
   state = initialState;
 
   mlWidget = {};
   uploadWidget = {};
 
-  getMaxUploadsAllowed(){
-	  return (MAX_UPLOADS - this.state.items.length);
+  getMaxUploadsAllowed() {
+    return MAX_UPLOADS - this.state.items.length;
   }
 
   async componentDidMount() {
-    const productFolder = this.randomFolder();
     this.mlWidget = await initMediaLibraryWidget();
-    const uwCallback = (error, result) => {
-      if (result && result.event === "success") {
-        this.setState((prevState: Object) => ({ items: [...prevState.items, result.info] }));
-      } else if (result && result.event === "queues-end") {
-        this.uploadWidget.close();
-      }
-    };
-
-    this.uploadWidget = await initUploadWidget({
-	    maxFiles: this.getMaxUploadsAllowed(),
-	    text: {
-		    "en": {
-			    "local": {
-				    "browse": "Select Files",
-			    },
-			    "menu": {
-				    "files": "Local Files",
-				    "web": "URL",
-				    "camera": "Computer Camera",
-				    "gsearch": "Google",
-				    "instagram": "Instush"
-			    },
-		    }
-	    },
-	    styles: {
-		    palette: {
-			    window: "#ffffff",
-			    sourceBg: "#E8E8E8",
-			    windowBorder: "#060C12",
-			    tabIcon: "#000000",
-			    inactiveTabIcon: "#555a5f",
-			    menuIcons: "#191E23",
-			    link: "#FF0404",
-			    action: "#9C2F0D",
-			    inProgress: "#F56767",
-			    complete: "#205820",
-			    error: "#cc0000",
-			    textDark: "#000000",
-			    textLight: "#fcfffd"
-		    },
-	    },
-	    folder: `Products/${productFolder}`
-    }, uwCallback);
+    this.uploadWidget = await initUploadWidget(
+      {
+        maxFiles: this.getMaxUploadsAllowed(),
+        text: {
+          en: {
+            local: {
+              browse: "Select Files"
+            },
+            menu: {
+              files: "Local Files",
+              web: "URL",
+              camera: "Computer Camera",
+              gsearch: "Google",
+              instagram: "Instush"
+            }
+          }
+        },
+        styles: {
+          palette: {
+            window: "#ffffff",
+            sourceBg: "#E8E8E8",
+            windowBorder: "#060C12",
+            tabIcon: "#000000",
+            inactiveTabIcon: "#555a5f",
+            menuIcons: "#191E23",
+            link: "#FF0404",
+            action: "#9C2F0D",
+            inProgress: "#F56767",
+            complete: "#205820",
+            error: "#cc0000",
+            textDark: "#000000",
+            textLight: "#fcfffd"
+          }
+        },
+        folder: `Products/${this.randomFolder()}`
+      },
+      this.uwCallback
+    );
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
-	  if (prevState.items.length !== this.state.items.length){
-		  this.uploadWidget.update({maxFiles: this.getMaxUploadsAllowed()})
-	  }
+    if (prevState.items.length !== this.state.items.length) {
+      this.uploadWidget.update({ maxFiles: this.getMaxUploadsAllowed() });
+    }
   }
+
+  uwCallback = (error, result) => {
+    if (result && result.event === "success") {
+      this.setState((prevState: Object) => ({ items: [...prevState.items, result.info] }));
+    } else if (result && result.event === "queues-end") {
+      this.uploadWidget.close();
+    }
+  };
 
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
   randomFolder = () =>
-	  new Array(10)
-		  .fill(null)
-		  .map(()=> CHARS.charAt(Math.floor(Math.random() * CHARS.length)))
-		  .join("");
+    new Array(10)
+      .fill(null)
+      .map(() => CHARS.charAt(Math.floor(Math.random() * CHARS.length)))
+      .join("");
 
   onSubmit = async () => {
     const res = await request("/products", {
@@ -130,12 +138,8 @@ class Admin extends React.Component<Props, State> {
 
   renderProductImagesWidget = () => (
     <div className={styles.thumbsList}>
-      <div
-        className={styles.thumbWrapper}
-        onClick={() => this.uploadWidget && this.uploadWidget.open && this.uploadWidget.open()}
-      >
-        Add An Image
-      </div>
+      <Button title="Add An Image" onClick={() => this.uploadWidget && this.uploadWidget.open && this.uploadWidget.open()} />
+
       {this.state.items.map(item => (
         <div className={styles.thumbWrapper}>
           <img

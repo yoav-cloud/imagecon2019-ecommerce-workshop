@@ -1,5 +1,6 @@
 import React from "react";
 import { propTypes } from "mobx-react";
+import { mapKeys, camelCase } from "lodash";
 import { calculateDiscountPrice } from "../../helpers";
 import ProductGallery from "./ProductGallery/ProductGallery";
 
@@ -14,14 +15,20 @@ const Star = () => (
 );
 
 const Product = ({ location }: Object) => {
-  const product = { ...{ name: "Coffee Mug", price: 1000, discount: 10 }, ...(location.state ? location.state.product : {}) };
+  const product = location.state ? location.state.product : {};
   return (
     <div className="section">
       <div className="container">
         <div className="row">
-          <div style={{ display: "flex" }}>
-            <div className="prductPreview">
-              <ProductGallery />
+          <div style={{ width: "1000px", display: "flex", margin: "auto" }}>
+            <div
+              className="prductPreview"
+              style={{
+                paddingRight: "80px",
+                flexDirection: "row-reverse"
+              }}
+            >
+              <ProductGallery mediaAssets={product.items.map(item => mapKeys(item, (value, key) => camelCase(key)))} />
             </div>
             <div className="">
               <div className="product-details">
@@ -348,15 +355,15 @@ const Product = ({ location }: Object) => {
                             <span>Your Rating: </span>
                             <div className="stars">
                               <input id="star5" name="rating" value="5" type="radio" />
-                              <label for="star5" />
+                              <label htmlFor="star5" />
                               <input id="star4" name="rating" value="4" type="radio" />
-                              <label for="star4" />
+                              <label htmlFor="star4" />
                               <input id="star3" name="rating" value="3" type="radio" />
-                              <label for="star3" />
+                              <label htmlFor="star3" />
                               <input id="star2" name="rating" value="2" type="radio" />
-                              <label for="star2" />
+                              <label htmlFor="star2" />
                               <input id="star1" name="rating" value="1" type="radio" />
-                              <label for="star1" />
+                              <label htmlFor="star1" />
                             </div>
                           </div>
                           <button className="primary-btn">Submit</button>
