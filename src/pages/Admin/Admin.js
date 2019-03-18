@@ -56,6 +56,20 @@ class Admin extends React.Component<Props, State> {
 
     this.uploadWidget = await initUploadWidget({
 	    maxFiles: this.getMaxUploadsAllowed(),
+	    text: {
+		    "en": {
+			    "local": {
+				    "browse": "Select Files",
+			    },
+			    "menu": {
+				    "files": "Local Files",
+				    "web": "URL",
+				    "camera": "Computer Camera",
+				    "gsearch": "Google",
+				    "instagram": "Instush"
+			    },
+		    }
+	    },
 	    styles: {
 		    palette: {
 			    window: "#ffffff",
