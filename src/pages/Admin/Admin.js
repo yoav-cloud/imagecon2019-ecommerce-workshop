@@ -11,11 +11,13 @@ import styles from "./Admin.module.scss";
 //             TYPES             //
 ///////////////////////////////////
 type Props = Object;
-type State = { name: string, price: number, brand: string, discount: number, status: string };
+type State = { name: string, price: number, brand: string, discount: number, items: [], status: string };
 
 ///////////////////////////////////
 //           CONSTANTS           //
 ///////////////////////////////////
+const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+const MAX_UPLOADS = 5;
 const initialState = { name: "", price: 0, brand: "", discount: 0, items: [], status: "" };
 const BRANDS = ["Nike", "Adidas", "Under Armor", "Adika"];
 const PRODUCT_ATTRIBUTES = ["name", "price", "brand", "discount"];
@@ -37,6 +39,10 @@ class Admin extends React.Component<Props, State> {
   mlWidget = {};
   uploadWidget = {};
 
+  getMaxUploadsAllowed(){
+	  return (MAX_UPLOADS - this.state.items.length);
+  }
+
   async componentDidMount() {
     const productFolder = this.randomFolder();
     this.mlWidget = await initMediaLibraryWidget();
@@ -47,19 +53,59 @@ class Admin extends React.Component<Props, State> {
         this.uploadWidget.close();
       }
     };
-    this.uploadWidget = await initUploadWidget({ folder: `Products/${productFolder}` }, uwCallback);
+
+    this.uploadWidget = await initUploadWidget({
+	    maxFiles: this.getMaxUploadsAllowed(),
+	    text: {
+		    "en": {
+			    "local": {
+				    "browse": "Select Files",
+			    },
+			    "menu": {
+				    "files": "Local Files",
+				    "web": "URL",
+				    "camera": "Computer Camera",
+				    "gsearch": "Google",
+				    "instagram": "Instush"
+			    },
+		    }
+	    },
+	    styles: {
+		    palette: {
+			    window: "#ffffff",
+			    sourceBg: "#E8E8E8",
+			    windowBorder: "#060C12",
+			    tabIcon: "#000000",
+			    inactiveTabIcon: "#555a5f",
+			    menuIcons: "#191E23",
+			    link: "#FF0404",
+			    action: "#9C2F0D",
+			    inProgress: "#F56767",
+			    complete: "#205820",
+			    error: "#cc0000",
+			    textDark: "#000000",
+			    textLight: "#fcfffd"
+		    },
+	    },
+	    folder: `Products/${productFolder}`
+    }, uwCallback);
+  }
+
+  componentDidUpdate(prevProps: Props, prevState: State) {
+	  if (prevState.items.length !== this.state.items.length){
+		  this.uploadWidget.update({maxFiles: this.getMaxUploadsAllowed()})
+	  }
   }
 
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  randomFolder = () => {
-    let text = "";
-    const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    for (var i = 0; i < 10; i++) text += possible.charAt(Math.floor(Math.random() * possible.length));
-    return text;
-  };
+  randomFolder = () =>
+	  new Array(10)
+		  .fill(null)
+		  .map(()=> CHARS.charAt(Math.floor(Math.random() * CHARS.length)))
+		  .join("");
 
   onSubmit = async () => {
     const res = await request("/products", {
