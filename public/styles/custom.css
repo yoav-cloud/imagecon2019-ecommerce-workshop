@@ -1,0 +1,14 @@
+.adminLink {
+    position: absolute;
+    right: 1px;
+
+    width: 100px;
+    height: 100px;
+
+    cursor: pointer;
+}
+
+.adminLink img {
+    width: 60px;
+    height: 60px;
+}

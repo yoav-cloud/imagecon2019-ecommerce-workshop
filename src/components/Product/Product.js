@@ -3,9 +3,8 @@ import React, { Fragment } from "react";
 // import { calculateDiscountPrice } from "../../helpers";
 // import ProductGallery from "./ProductGallery/ProductGallery";
 
-
 const Product = ({ location }: Object) => {
-  const product = location.state ? location.state.product : {};
+	  const product = location.state ? location.state.product : {};
   return (
   	<Fragment>
 	    <section className="section section-product">
