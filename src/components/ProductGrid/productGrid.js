@@ -5,8 +5,6 @@ import GridItem from "../GridItem/gridItem";
 import styles from "./productGrid.module.scss";
 
 const ProductGrid = ({products}) => {
-	console.log("!!!! RENDERING PRODUCT Grid", products);
-
 	return (
 		<div className={styles.grid}>
 			{products.map(p => (
