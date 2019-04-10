@@ -18,8 +18,8 @@ type State = { name: string, price: number, brand: string, discount: number, ite
 ///////////////////////////////////
 const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 const MAX_UPLOADS = 5;
-const initialState = { name: "", price: 0, brand: "", discount: 0, items: [], status: "" };
-const BRANDS = ["Nike", "Adidas", "Under Armor", "Adika"];
+const initialState = { name: "", price: 0, brand: "None", discount: 0, items: [], status: "" };
+const BRANDS = ["Speeder", "Sports", "Footware"];
 const PRODUCT_ATTRIBUTES = ["name", "price", "brand", "discount"];
 const PRODUCT_IMAGE_PREVIEW_TRANSFORMATION = {
   width: 100,
@@ -118,7 +118,7 @@ class Admin extends React.Component<Props, State> {
   onSubmit = async () => {
     const res = await request("/products", {
       method: "POST",
-      bodyParams: {
+      data: {
         ...pick(this.state, PRODUCT_ATTRIBUTES),
         items: this.state.items.map(item => ({ id: item.public_id, type: item.resource_type }))
       }

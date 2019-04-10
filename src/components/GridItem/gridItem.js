@@ -22,61 +22,58 @@ const renderProductImage = ({ name, items }) => {
 };
 
 const GridItem = ({ product }) => {
+  const discount = parseFloat(product.discount);
+  return (
+    <div className={styles.product}>
+      <Link
+        to={{
+          pathname: "/product",
+          state: {
+            product: toJS(product)
+          }
+        }}
+      >
+        <div className={styles.image}>
+          {renderProductImage(product)}
+          <div className={styles.label}>
+            {discount ? <span className={styles.sale}>-{product.discount}%</span> : null}
+            <span className={styles.new}>NEW</span>
+          </div>
+        </div>
+      </Link>
 
-	const discount = parseFloat(product.discount);
+      <div className={styles.body}>
+        <p className={styles.category}>Category</p>
+        <h3 className={styles.name}>
+          <a href="#">{product.name}</a>
+        </h3>
+        <h4 className={styles.price}>
+          ${discount ? calculateDiscountPrice(product) : product.price}
+          {discount ? <del className={styles["old-price"]}>${product.price}</del> : null}
+        </h4>
 
-	return (<div className={styles.product}>
-			<Link
-				to={{
-					pathname: "/product",
-					state: {
-						product: toJS(product)
-					}
-				}}
-			>
-				<div className={styles.image}>
-					{renderProductImage(product)}
-					<div className={styles.label}>
-						{discount ?
-							<span className={styles.sale}>-{product.discount}%</span> : null}
-						<span className={styles.new}>NEW</span>
-					</div>
-				</div>
-			</Link>
-
-			<div className={styles.body}>
-				<p className={styles.category}>Category</p>
-				<h3 className={styles.name}>
-					<a href="#">{product.name}</a>
-				</h3>
-				<h4 className={styles.price}>
-					${discount ? calculateDiscountPrice(product) : product.price}
-					{discount ?
-						<del className={styles["old-price"]}>${product.price}</del> : null}
-				</h4>
-
-				<div className={styles.buttons}>
-					<button className="add-to-wishlist">
-						<i className="fa fa-heart-o"/>
-						<span className={styles.tooltipp}>add to wishlist</span>
-					</button>
-					<button className="add-to-compare">
-						<i className="fa fa-exchange"/>
-						<span className={styles.tooltipp}>add to compare</span>
-					</button>
-					<button className="quick-view">
-						<i className="fa fa-eye"/>
-						<span className={styles.tooltipp}>quick view</span>
-					</button>
-				</div>
-			</div>
-			<div className={styles["add-to-cart"]}>
-				<button className={styles["add-to-cart-btn"]}>
-					<i className="fa fa-shopping-cart"/> add to cart
-				</button>
-			</div>
-		</div>
-	);
+        <div className={styles.buttons}>
+          <button className="add-to-wishlist">
+            <i className="fa fa-heart-o" />
+            <span className={styles.tooltipp}>add to wishlist</span>
+          </button>
+          <button className="add-to-compare">
+            <i className="fa fa-exchange" />
+            <span className={styles.tooltipp}>add to compare</span>
+          </button>
+          <button className="quick-view">
+            <i className="fa fa-eye" />
+            <span className={styles.tooltipp}>quick view</span>
+          </button>
+        </div>
+      </div>
+      <div className={styles["add-to-cart"]}>
+        <button className={styles["add-to-cart-btn"]}>
+          <i className="fa fa-shopping-cart" /> add to cart
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default observer(GridItem);

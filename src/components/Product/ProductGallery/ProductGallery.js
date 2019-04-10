@@ -1,56 +1,42 @@
 import React, { useEffect } from "react";
 import { CREDS } from "../../../Constants";
 
-const ProductGallery = ({ mediaAssets }) => {
+const ProductGallery = ({ productInfo, mediaAssets }) => {
   useEffect(() => {
     const myWidget = window.cloudinary.galleryWidget({
       container: "#product-gallery",
       cloudName: CREDS.cloudName,
-      mediaAssets: mediaAssets.map(ma => ({
-        ...ma
+      mediaAssets: mediaAssets.map(asset => ({
+        ...asset,
+        transformation: {
+          transformation: [
+            { variables: [["$discount", "ctx:!discount!"], ["$brand", "ctx:!brand!"]] },
+            { width: 1000, height: 1000, crop: "fill", gravity: "auto" },
+            { if: "$discount_ne_!0!" },
+            { overlay: "badge", width: 300, flags: "relative", effect: "colorize", color: "rgb:CC0000" },
+            { overlay: "text:arial_80_bold:$(discount)%2525", color: "white" },
+            { gravity: "center", x: -50, flags: "layer_apply" },
+            { gravity: "north_east", x: 30, y: 30, angle: -20, flags: "layer_apply" },
+            { if: "end" },
+            { overlay: "$brand", width: 500 },
+            { gravity: "south_west", x: 30, y: -30, flags: "layer_apply" }
+          ]
+        }
       })),
-      transformation: { transformation: [{}] },
-      bgColor: "transparent",
       carouselLocation: "bottom",
       carouselOffset: 10,
       navigation: "always",
       aspectRatio: "square",
-      navigationButtonProps: {
-        shape: "rectangle",
-        color: "#000",
-        iconColor: "#fff",
-        buttonSize: 42
-      },
       thumbnailProps: {
         spacing: 18,
         width: 83,
         height: 80,
-        navigationFloat: true,
-        mediaSymbolBgShape: "square",
-        navigationShape: "none",
-        selectedStyle: "all",
-        selectedGradientEnd: "#ffffff",
         selectedBorderColor: "#D10024",
-        selectedGradientDirection: "vertical",
         selectedBorderPosition: "top-bottom"
       },
-      viewportBreakpoints: [
-        {
-          breakpoint: 1024,
-          carouselLocation: "bottom"
-        },
-        {
-          breakpoint: 480,
-          carouselStyle: "indicators",
-          carouselLocation: "bottom",
-          thumbnailProps: {
-            color: "#000000"
-          }
-        }
-      ],
       zoom: true,
       zoomProps: {
-        trigger: "click",
+        trigger: "hover",
         level: 2
       },
       placeholderImage: false

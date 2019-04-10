@@ -1,6 +1,6 @@
 import React from "react";
 import { propTypes } from "mobx-react";
-import { mapKeys, camelCase } from "lodash";
+import { mapKeys, camelCase, pick } from "lodash";
 import { calculateDiscountPrice } from "../../helpers";
 import ProductGallery from "./ProductGallery/ProductGallery";
 
@@ -28,7 +28,10 @@ const Product = ({ location }: Object) => {
                 flexDirection: "row-reverse"
               }}
             >
-              <ProductGallery mediaAssets={product.items.map(item => mapKeys(item, (value, key) => camelCase(key)))} />
+              <ProductGallery
+                productInfo={pick(product, ["brand", "price", "discount"])}
+                mediaAssets={product.items.map(item => mapKeys(item, (value, key) => camelCase(key)))}
+              />
             </div>
             <div className="">
               <div className="product-details">
