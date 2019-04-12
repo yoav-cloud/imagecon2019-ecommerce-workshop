@@ -1,8 +1,8 @@
 const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
 const calculateDiscountPrice = ({price, discount}) =>
-	(price - (parseFloat(price) * (parseFloat(discount) / 100)))
-		.toFixed(1);
+	discount ? (price - (parseFloat(price) * (parseFloat(discount) / 100)))
+		.toFixed(1) : price;
 
 const getRandomString = (len = 10) =>
 	new Array(len)
