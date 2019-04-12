@@ -10,7 +10,6 @@ const ProductPrice = ({ price, isDiscounted }) => (
 	</div>);
 
 const Info = ({ product }) => {
-	console.log("rendering product !!!!!!!", product);
 
 	const discountedPrice = calculateDiscountPrice(product),
 		isDiscounted = discountedPrice !== product.price;

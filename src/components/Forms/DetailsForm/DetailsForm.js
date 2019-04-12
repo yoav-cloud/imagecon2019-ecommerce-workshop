@@ -6,18 +6,6 @@ import BrandsSelect from "../BrandsSelect/BrandsSelect";
 import styles from "../forms.module.scss";
 
 const DetailsForm = (props) => {
-	// const [name, setName] = useState("");
-	// const [price, setPrice] = useState(0);
-	// const [brand, setBrand] = useState("");
-	// const [discount, setDiscount] = useState(0);
-	//
-	// const setters = {
-	// 	name: setName,
-	// 	price: setPrice,
-	// 	brand: setBrand,
-	// 	discount: setDiscount,
-	// };
-
 	const onFormChange = useCallback((e) => {
 		const name = e.target.name,
 			value = e.target.value;
@@ -28,10 +16,6 @@ const DetailsForm = (props) => {
 				[name]: value,
 			},
 		})
-		// if (setters[name]){
-		// 	console.log(`setting ${name} to value: ${value}`);
-		// 	setters[name](value);
-		// }
 	}, []);
 
 	return (
