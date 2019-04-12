@@ -19,22 +19,25 @@ const getItemContext = (data) => {
 
 module.exports = (req, info) => {
 
-	const data = JSON.parse(info.requestBody),
-		context = getItemContext(data);
+	const data = info.requestBody,
+		context = getItemContext(info.requestBody);
 
 	console.log("!!!!!!!!! received info = ", data);
 	console.log("!!!!!!!!! context = ", context);
 
-	return Promise.race(
-		data.items.map((item) => {
-			return cloudinary.update(
-				item.id,
-				{
-					resource_type: item.type,
-					context
-				})
-		})
-	)
+	const p = data.items.length ?
+		Promise.race(
+			data.items.map((item) => {
+				return cloudinary.update(
+					item.id,
+					{
+						resource_type: item.type,
+						context
+					})
+			})
+		) : Promise.resolve("no files uploaded!");
+
+	return p
 		.then((result) => {
 			console.log("!!!!!!!!! UPDATE SUCCESS !!!! ", result);
 
@@ -49,5 +52,5 @@ module.exports = (req, info) => {
 				success: false,
 			}
 		})
-		.then((response) => ({response}));
+		.then((response) => ({ response }));
 };

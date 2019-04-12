@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { CREDS } from "../../../Constants";
+import { CREDS } from "../../../consts";
 
 const ProductGallery = ({ mediaAssets }) => {
   useEffect(() => {

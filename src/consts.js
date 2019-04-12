@@ -1,10 +1,9 @@
-///////////////////////////////////
-//           CONSTANTS           //
-///////////////////////////////////
+export const CREDS = {
+  cloudName: "ecomm40",
+  unsignedUploadPreset: "ecomm40upload"
+};
 
 export const MAX_UPLOADS = 5;
-
-export const BRANDS = ["Nike", "Adidas", "Under Armor", "Adika"];
 
 export const PRODUCT_ATTRIBUTES = ["name", "price", "brand", "discount"];
 
@@ -16,11 +15,10 @@ export const PRODUCT_IMAGE_PREVIEW_TRANSFORMATION = {
 	quality: "auto"
 };
 
-export const STATUS_MESSAGE = {
+export const STATUS_MESSAGES = {
 	success: "Product has been saved!",
 	error: "Product failed to update..."
 };
-
 
 export const TYPES = {
 	SET_DETAILS: "SET_DETAILS",

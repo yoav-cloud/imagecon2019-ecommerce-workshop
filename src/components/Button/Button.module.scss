@@ -1,0 +1,33 @@
+.button {
+  height: 40px;
+  width: 100px;
+  background: #6f6f6f;
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+
+  &.action {
+    width: 120px;
+    padding-left: 20px;
+    background: #4c9873;
+
+    &:before {
+      content: '';
+      background-image: url("./done.svg");
+      width: 22px;
+      height: 22px;
+      position: absolute;
+      top: 7px;
+      left: 5px;
+    }
+  }
+
+  //&.mlWidget, &.saveBtn {
+  //  align-self: center;
+  //  margin-bottom: 20px;
+  //  width: 150px;
+  //}
+}

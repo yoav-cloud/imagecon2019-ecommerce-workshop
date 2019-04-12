@@ -1,4 +1,4 @@
-import { CREDS } from "../Constants";
+import { CREDS } from "../consts";
 
 let widget;
 

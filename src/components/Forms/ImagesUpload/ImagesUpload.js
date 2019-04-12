@@ -1,25 +1,30 @@
 import React from "react";
-import styles from "./Admin.module.scss";
+import cx from "classnames";
+import Button from "../../../components/Button/Button";
+import styles from "../forms.module.scss";
 
-const ImagesUpload = () => {
-
+const ImagesUpload = ({items}) => {
 	return (
-		<div className={styles.admin}>
-			<div className={styles.newProductForm}>
-				<fieldset className={styles.images}>
-					<legend align="center">Product Images</legend>
-					{/*<div className={styles.imagesContainer}>{this.renderProductImagesWidget()}</div>*/}
-				</fieldset>
-			</div>
-		</div>);
+		<div className={styles.newProductForm}>
+			<fieldset className={styles.images}>
+				<legend>Product Images</legend>
+
+				<div className={cx(styles.inputWrapper, styles.imagesWrapper)}>
+
+					<Button title="Add An Image"/>
+
+
+				</div>
+				{/*<div className={styles.imagesContainer}>{this.renderProductImagesWidget()}</div>*/}
+			</fieldset>
+		</div>
+	);
 };
 
 export default ImagesUpload;
 
 // renderProductImagesWidget = () => (
 //   <div className={styles.thumbsList}>
-//     <Button title="Add An Image" onClick={() => this.uploadWidget && this.uploadWidget.open && this.uploadWidget.open()} />
-//
 //     {this.state.items.map(item => (
 //       <div className={styles.thumbWrapper}>
 //         <img

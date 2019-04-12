@@ -2,21 +2,23 @@ import React, { useCallback, useReducer } from "react";
 import cx from "classnames";
 import { inject } from "mobx-react";
 import { pick } from "lodash";
-import request from "../../services/api";
-import getReducer from "../../genericReducer";
-// import { getRandomString } from "../../helpers";
-// import { init as initMediaLibraryWidget } from "../../services/mlwidget";
-// import { init as initUploadWidget } from "../../services/uploadwidget";
-// import cloudinaryService from "../../services/cloudinary";
-import DetailsForm from "./DetailsForm";
-import ImagesUpload from "./ImagesUpload";
-
 import {
 	TYPES,
 	MAX_UPLOADS,
 	PRODUCT_ATTRIBUTES,
-	STATUS_MESSAGE
-} from "./consts";
+	STATUS_MESSAGES
+} from "../../consts";
+import request from "../../services/api";
+import getReducer from "../../genericReducer";
+import Button from "../../components/Button/Button";
+import DetailsForm from "../../components/Forms/DetailsForm/DetailsForm";
+import ImagesUpload from "../../components/Forms/ImagesUpload/ImagesUpload";
+
+// import { getRandomString } from "../../helpers";
+// import { init as initMediaLibraryWidget } from "../../services/mlwidget";
+// import { init as initUploadWidget } from "../../services/uploadwidget";
+// import cloudinaryService from "../../services/cloudinary";
+
 
 import styles from "./Admin.module.scss";
 
@@ -31,8 +33,8 @@ const initialState = {
 };
 
 const reducers = {
-	[TYPES.SET_DETAILS]: (state, payload) => ({...state,...payload}),
-	[TYPES.SET_STATUS]: (state, payload) => ({...state, status: payload}),
+	[TYPES.SET_DETAILS]: (state, payload) => ({ ...state, ...payload }),
+	[TYPES.SET_STATUS]: (state, payload) => ({ ...state, status: payload }),
 
 	// const getMaxUploadsAllowed = (items) => {
 // 	return MAX_UPLOADS - items; //this.state.items.length;
@@ -47,7 +49,7 @@ const Admin = () => {
 	const onSubmit = useCallback(async () => {
 		await request("/products", {
 			method: "POST",
-			bodyParams: {
+			data: {
 				...pick(state, PRODUCT_ATTRIBUTES),
 				items: state.items.map(item => ({
 					id: item.public_id,
@@ -56,7 +58,7 @@ const Admin = () => {
 			}
 		});
 
-		dispatch({type: TYPES.SET_STATUS, payload: "success"});
+		dispatch({ type: TYPES.SET_STATUS, payload: "success" });
 	});
 
 	return (
@@ -66,15 +68,15 @@ const Admin = () => {
 			<div className={styles.formContainer}>
 				<DetailsForm {...state} dispatch={dispatch}/>
 				<ImagesUpload/>
+
+				<div className={cx(styles.status, styles[`${state.status}`])}>
+					{STATUS_MESSAGES[state.status]}
+				</div>
 			</div>
 
-			<button className={styles.saveBtn} onClick={onSubmit}>
-				Save Details
-			</button>
-
-			<div className={styles[`${state.status}`]}>
-				{STATUS_MESSAGE[state.status]}
-			</div>
+			<Button action
+			        title="Save Details"
+			        onClick={onSubmit}/>
 		</section>
 	);
 };

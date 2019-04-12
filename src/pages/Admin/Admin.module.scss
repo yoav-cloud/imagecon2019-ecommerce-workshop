@@ -1,153 +1,29 @@
-.admin {
-  display: flex;
-  flex-direction: column;
 
-  .newProductForm {
-    display: flex;
-    align-self: center;
-    height: 430px;
-
-    fieldset {
-      margin: 20px;
-      //border: 1px solid black;
-      // height: 100%;
-
-
-      width: 450px;
-
-      legend {
-        font-size: 22px;
-        width: auto;
-      }
-
-      &.details {
-
-      }
-
-      &.images {
-      //  width: 260px;
-      //  height: 300px;
-      //
-      //  .imagesContainer {
-      //
-      //  }
-      }
-    }
-
-    .controls {
-      margin: 20px;
-      height: 70px;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .success {
-      text-align: center;
-      font-weight: 900;
-      color: green;
-    }
-
-    .error {
-      text-align: center;
-      font-weight: 900;
-      color: red;
-    }
-
-    .inputWrapper {
-      display: flex;
-      flex-direction: column;
-      margin: 30px;
-      font-size: 16px;
-
-      .formRow {
-        display: flex;
-        flex-direction: column;
-        align-items: start;
-        margin-bottom: 20px;
-        justify-items: left;
-      }
-
-      .formRowPrice {
-        margin-right: 12px;
-      }
-
-      label {
-        font-size: 18px;
-        font-weight: 600;
-        margin-bottom: 0px;
-        line-height: 1;
-      }
-
-      input, select {
-        //margin-bottom: 20px;
-        border-radius: 4px;
-        border-width: 1px;
-        border-color: #828282;
-        border-style: solid;
-        height: 26px;
-        width: 240px;
-      }
-
-      input {
-        //width: 200px;
-        &[type='number'] {
-          width: 110px;
-        }
-      }
-
-      //select {
-      //  width: 200px;
-      //}
-    }
-
-    .thumbsList {
-      display: flex;
-      flex-wrap: wrap;
-      margin-left: 18px;
-      height: 232px;
-      overflow: scroll;
-
-      .thumbWrapper {
-        display: flex;
-        border: 1px solid black;
-        width: 100px;
-        height: 100px;
-        overflow: hidden;
-        cursor: pointer;
-        margin-bottom: 20px;
-        margin-right: 20px;
-        text-align: center;
-        align-items: center;
-        font-size: 16px;
-      }
-    }
-  }
-}
 
 .adminSection {
   width: 100%;
   //display: flex;
   text-align: center;
+
   h1 {
     font-size: 28px;
     font-weight: bold;
   }
+}
 
-  button {
-    height: 40px;
-    width: 100px;
-    background: #69d19f;
-    color: #000000;
-    font-weight: 700;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.status {
+  width: 100%;
 
-    &.mlWidget, &.saveBtn {
-      align-self: center;
-      margin-bottom: 20px;
-      width: 150px;
-    }
+  &.success {
+    text-align: center;
+    font-weight: 900;
+    color: green;
+  }
+
+  &.error {
+    text-align: center;
+    font-weight: 900;
+    color: red;
   }
 }
 
@@ -155,16 +31,11 @@
   background: #eeeeee;
   display: flex;
   width: 100%;
+  flex-wrap: wrap;
 
   fieldset {
     border: none;
   }
 
   margin-bottom: 10px;
-}
-
-.priceContainer {
-
-  display: flex;
-
 }
