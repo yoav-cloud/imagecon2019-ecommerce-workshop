@@ -1,7 +1,15 @@
 import React from "react";
+import cloudinary from "../../services/cloudinary";
+
 
 const GridImage = ({ item }) => {
-	const url = item.secure_url;
+	const url = cloudinary.url(item.public_id, {
+		crop: "fit",
+		width: 260,
+		quality: "auto",
+		format: "auto",
+		dpr: 2,
+	});
 
 	return (
 		<img src={url}/>
