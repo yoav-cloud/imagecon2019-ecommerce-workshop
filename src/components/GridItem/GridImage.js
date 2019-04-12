@@ -1,9 +1,10 @@
 import React from "react";
 
-const GridImage = ({ image }) => {
+const GridImage = ({ item }) => {
+	const url = item.secure_url;
 
 	return (
-		<img src={image}/>
+		<img src={url}/>
 	);
 };
 

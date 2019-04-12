@@ -17,6 +17,8 @@ const GridItem = ({ product }) => {
 	const discountedPrice = calculateDiscountPrice(product),
 		isDiscounted = discountedPrice !== product.price;
 
+	const imageItem = product.items.find((item) => item.resource_type === "image");
+
 	return (
 		<div
 			className="column is-6-mobile is-4-tablet is-3-desktop is-3-widescreen is-3-fullhd available">
@@ -30,7 +32,7 @@ const GridItem = ({ product }) => {
 			>
 				<figure className="image" style={{ height: "280px" }}>
 					{product.isNew && <div className="tags"><span className="tag">New</span></div>}
-					<GridImage image={product.items[0].secure_url}/>
+					<GridImage item={imageItem} />
 				</figure>
 				<div className="content product-caption">
 					<div className="product-name">{product.name}</div>
