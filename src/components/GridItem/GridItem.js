@@ -1,11 +1,11 @@
 import React from "react";
-// import { toJS } from "mobx";
+import { toJS } from "mobx";
 import { observer } from "mobx-react";
 import { Link } from "react-router-dom";
 // import cloudinary from "../../services/cloudinary";
 // import { calculateDiscountPrice } from "../../helpers";
 
-// import styles from "./gridItem.module.scss";
+// import styles from "./GridItem.module.scss";
 
 // const renderProductImage = ({ name, items }) => {
 //   const image = items.find(i => i.resource_type === "image");
@@ -31,7 +31,7 @@ const GridItem = ({ product }) => {
 			to={{
 				pathname: "/product",
 				state: {
-					product //: toJS(product)
+					product: toJS(product)
 				}
 			}}
 		>
@@ -46,15 +46,7 @@ const GridItem = ({ product }) => {
 		</Link>
 	</div>;
 
-	//
-	// (<div className={styles.product}>
-	// 		<Link
-	// 			to={{
-	// 				pathname: "/product",
-	// 				state: {
-	// 					product: toJS(product)
-	// 				}
-	// 			}}
+
 	// 		>
 	// 			<div className={styles.image}>
 	// 				{renderProductImage(product)}

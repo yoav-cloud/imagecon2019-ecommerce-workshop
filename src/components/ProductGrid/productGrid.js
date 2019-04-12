@@ -1,6 +1,6 @@
 import React from "react";
 import {observer} from "mobx-react";
-import GridItem from "../GridItem/gridItem";
+import GridItem from "../GridItem/GridItem";
 
 import styles from "./productGrid.module.scss";
 

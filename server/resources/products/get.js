@@ -35,6 +35,7 @@ module.exports = (req, info) => {
 				//only include items in a sub-folder
 				if (pId !== productsFolder.toLowerCase()) {
 					res[pId] = {
+						id: pId,
 						...res[pId],
 						...item.context,
 						items: [
