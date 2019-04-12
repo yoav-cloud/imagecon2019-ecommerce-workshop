@@ -14,12 +14,6 @@ import Button from "../../components/Button/Button";
 import DetailsForm from "../../components/Forms/DetailsForm/DetailsForm";
 import ImagesUpload from "../../components/Forms/ImagesUpload/ImagesUpload";
 
-// import { getRandomString } from "../../helpers";
-// import { init as initMediaLibraryWidget } from "../../services/mlwidget";
-// import { init as initUploadWidget } from "../../services/uploadwidget";
-// import cloudinaryService from "../../services/cloudinary";
-
-
 import styles from "./Admin.module.scss";
 
 const initialState = {
@@ -35,10 +29,6 @@ const initialState = {
 const reducers = {
 	[TYPES.SET_DETAILS]: (state, payload) => ({ ...state, ...payload }),
 	[TYPES.SET_STATUS]: (state, payload) => ({ ...state, status: payload }),
-
-	// const getMaxUploadsAllowed = (items) => {
-// 	return MAX_UPLOADS - items; //this.state.items.length;
-// };
 };
 
 const reducer = getReducer(reducers);
@@ -80,35 +70,5 @@ const Admin = () => {
 		</section>
 	);
 };
-
-
-// mlWidget = {};
-// uploadWidget = {};
-
-
-// async componentDidMount() {
-// 	this.mlWidget = await initMediaLibraryWidget();
-//
-// 	this.uploadWidget = initUploadWidget({
-// 		maxFiles: this.getMaxUploadsAllowed(),
-// 		folder: `Products/${getRandomString()}`,
-// 		callback: this.uwCallback,
-// 	});
-// }
-
-// componentDidUpdate(prevProps: Props, prevState: State) {
-// 	if (prevState.items.length !== this.state.items.length) {
-// 		this.uploadWidget.update({ maxFiles: this.getMaxUploadsAllowed() });
-// 	}
-// }
-
-// uwCallback = (error, result) => {
-// 	if (result && result.event === "success") {
-// 		this.setState((prevState: Object) => ({ items: [...prevState.items, result.info] }));
-// 	} else if (result && result.event === "queues-end") {
-// 		this.uploadWidget.close();
-// 	}
-// };
-
 
 export default inject("appData")(Admin);
