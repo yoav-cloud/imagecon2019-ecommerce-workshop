@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from "react";
 import { inject, } from "mobx-react";
-import ProductGrid from "../../components/ProductGrid/productGrid";
+import ProductGrid from "../../components/ProductGrid/ProductGrid";
 import HomeSlider from "../../components/HomeSlider/HomeSlider";
 
 const ProductListingPage = (props) => {

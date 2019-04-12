@@ -2,7 +2,7 @@ import React from "react";
 import {observer} from "mobx-react";
 import GridItem from "../GridItem/GridItem";
 
-import styles from "./productGrid.module.scss";
+import styles from "./ProductGrid.module.scss";
 
 const ProductGrid = ({products}) => {
 	return (
