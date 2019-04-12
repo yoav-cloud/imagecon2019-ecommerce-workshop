@@ -3,7 +3,7 @@ import { inject } from "mobx-react";
 import { Switch, Route } from "react-router";
 import { Link } from "react-router-dom";
 import Admin from "./pages/Admin/Admin";
-import ProductListingPage from "./pages/ProductListing/productListing";
+import ProductListingPage from "./pages/ProductListing/ProductListing";
 import ProductPage from "./pages/ProductDetail/ProductDetail";
 
 const AdminLink = () => <div className="adminLink">

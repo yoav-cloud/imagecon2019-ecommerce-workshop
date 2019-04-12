@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from "react";
 import { inject, } from "mobx-react";
-import ProductGrid from "../../components/ProductGrid/productGrid";
+import ProductGrid from "../../components/ProductGrid/ProductGrid";
 import HomeSlider from "../../components/HomeSlider/HomeSlider";
 
 const products = [
@@ -78,14 +78,4 @@ const ProductListingPage = (props) => {
 
 export default inject("appData")(ProductListingPage);
 
-// import { useObservable, useObserver } from "mobx-react-lite";
-// 					{useObserver(()=> <span className="store-qty">
-// 						Showing {props.appData.products.length} products</span>)}
-// 					<ul className="store-pagination">
-// 						<li className="active">1</li>
-// 						<li><a href="#">2</a></li>
-// 						<li><a href="#">3</a></li>
-// 						<li><a href="#">4</a></li>
-// 						<li><a href="#"><i className="fa fa-angle-right"></i></a></li>
-// 					</ul>
 

@@ -1,25 +1,11 @@
 import React from "react";
-// import { toJS } from "mobx";
 import { observer } from "mobx-react";
 import { Link } from "react-router-dom";
-// import cloudinary from "../../services/cloudinary";
+import GridImage from "./GridImage";
+
 // import { calculateDiscountPrice } from "../../helpers";
+// import styles from "./GridItem.module.scss";
 
-// import styles from "./gridItem.module.scss";
-
-// const renderProductImage = ({ name, items }) => {
-//   const image = items.find(i => i.resource_type === "image");
-//
-//   const url = image
-//     ? cloudinary.url(image.public_id, {
-//         crop: "fit",
-//         width: 260,
-//         dpr: 2
-//       })
-//     : null;
-//
-//   return url && <img src={url} alt={name} />;
-// };
 
 const GridItem = ({ product }) => {
 
@@ -37,7 +23,7 @@ const GridItem = ({ product }) => {
 		>
 			<figure className="image" style={{ height: "280px" }}>
 				{product.isNew && <div className="tags"><span className="tag">New</span></div>}
-				<img src={product.image}/>
+				<GridImage image={product.image}/>
 			</figure>
 			<div className="content product-caption">
 				<div className="product-name">{product.name}</div>
