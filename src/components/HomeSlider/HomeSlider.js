@@ -10,8 +10,7 @@ export default () => <section className="section" style={{padding: "0px"}}>
 							<div className="image-gallery-slides">
 								<div className="image-gallery-slide center"
 								     style={{ transform: "translate3d(0%, 0px, 0px)" }}>
-									<div className="image-gallery-image"><a
-										href="https://store.cezerin.com/page-1"><img
+									<div className="image-gallery-image"><img
 										src="images/slide8.jpg"
 										alt="THE FRESH FOAM CRUZ"/>
 										<div className="caption" style={{color: "rgb(255, 255, 255)"}}>
@@ -20,29 +19,27 @@ export default () => <section className="section" style={{padding: "0px"}}>
 												STYLE.
 											</div>
 										</div>
-									</a></div>
+									</div>
 								</div>
 								<div className="image-gallery-slide right"
 								     style={{ transform: "translate3d(100%, 0px, 0px)" }}>
-									<div className="image-gallery-image"><a
-										href="https://store.cezerin.com/page-2"><img
+									<div className="image-gallery-image"><img
 										src="images/slide9.jpg"/>
 										<div className="caption" style={{color: "rgb(255, 255, 255)"}}>
 											<div className="caption-title"></div>
 											<div className="caption-description"></div>
 										</div>
-									</a></div>
+									</div>
 								</div>
 								<div className="image-gallery-slide left"
 								     style={{ transform: "translate3d(-100%, 0px, 0px)" }}>
-									<div className="image-gallery-image"><a
-										href="https://store.cezerin.com/page-3"><img
+									<div className="image-gallery-image"><img
 										src="images/slide7.jpg"/>
 										<div className="caption" style={{color: "rgb(255, 255, 255)"}}>
 											<div className="caption-title"></div>
 											<div className="caption-description"></div>
 										</div>
-									</a></div>
+									</div>
 								</div>
 							</div>
 						</div>
