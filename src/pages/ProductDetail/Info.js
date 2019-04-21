@@ -25,11 +25,11 @@ const Info = ({ product }) => {
 
 			<div>Qty</div>
 			<div className="product-quantity">
-				<a className="decrement"></a>
+				<span className="decrement" href="#"/>
 				<input maxLength="3" type="number" pattern="\d*" value="1"
 				       onChange={() => {
 				       }}/>
-				<a className="increment"></a></div>
+				<span className="increment" href="#"/></div>
 			<div className="button-addtocart">
 				<button className="button is-success is-fullwidth">Add to cart
 				</button>

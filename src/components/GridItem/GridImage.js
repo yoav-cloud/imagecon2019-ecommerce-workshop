@@ -1,10 +1,10 @@
 import React from "react";
 
 const GridImage = ({ item }) => {
-	const url = item.secure_url;
+	const url = item.secureUrl;
 
 	return (
-		<img src={url}/>
+		<img src={url} alt={item.publicId}/>
 	);
 };
 

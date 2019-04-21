@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-// import { camelCase } from "lodash";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import ProductGallery from "../../components/ProductGallery/ProductGallery";
 import Description from "./Description";
@@ -31,6 +30,3 @@ const ProductDetail = ({ location }: Object) => {
 };
 
 export default ProductDetail;
-
-// <ProductGallery mediaAssets={product.items.map(item =>
-// Object.keys(item).map((key) => camelCase(key)))} />
