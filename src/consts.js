@@ -1,7 +1,6 @@
-export const CREDS = {
-  cloudName: "ecomm40",
-  unsignedUploadPreset: "ecomm40upload"
-};
+export const CLOUD = "ecomm40";
+export const PRESET =  "ecomm40upload";
+
 
 export const MAX_UPLOADS = 5;
 
