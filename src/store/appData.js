@@ -1,4 +1,5 @@
 import {observable, action} from "mobx";
+import { camelCase, mapKeys } from "lodash";
 import bindObjectProps from "./bindObjectProps";
 import request from "../services/api";
 
@@ -21,8 +22,16 @@ const addProduct = action((...newProducts) => {
 	products.replace(products.concat(newProducts));
 });
 
+const serializeProductItems = (product) =>
+	product.items.map(item =>
+		mapKeys(item, (value, key) =>
+			camelCase(key)));
+
 const setProducts = action((newProducts) => {
-	products.replace(newProducts);
+	products.replace(newProducts.map((product) => ({
+		...product,
+		items:  serializeProductItems(product),
+	})));
 });
 
 const fetchProducts = () => {

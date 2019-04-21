@@ -24,7 +24,7 @@ export default () => <section className="section" style={{padding: "0px"}}>
 								<div className="image-gallery-slide right"
 								     style={{ transform: "translate3d(100%, 0px, 0px)" }}>
 									<div className="image-gallery-image"><img
-										src="images/slide9.jpg"/>
+										src="images/slide9.jpg" alt="slide9.jpg"/>
 										<div className="caption" style={{color: "rgb(255, 255, 255)"}}>
 											<div className="caption-title"></div>
 											<div className="caption-description"></div>
@@ -34,7 +34,7 @@ export default () => <section className="section" style={{padding: "0px"}}>
 								<div className="image-gallery-slide left"
 								     style={{ transform: "translate3d(-100%, 0px, 0px)" }}>
 									<div className="image-gallery-image"><img
-										src="images/slide7.jpg"/>
+										src="images/slide7.jpg" alt="slide7.jpg"/>
 										<div className="caption" style={{color: "rgb(255, 255, 255)"}}>
 											<div className="caption-title"></div>
 											<div className="caption-description"></div>

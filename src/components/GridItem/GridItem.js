@@ -17,7 +17,7 @@ const GridItem = ({ product }) => {
 	const discountedPrice = calculateDiscountPrice(product),
 		isDiscounted = discountedPrice !== product.price;
 
-	const imageItem = product.items.find((item) => item.resource_type === "image");
+	const imageItem = product.items.find((item) => item.resourceType === "image");
 
 	return (
 		<div
