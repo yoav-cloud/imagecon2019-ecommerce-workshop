@@ -11,12 +11,11 @@ const AdminLink = () => <div className="adminLink">
 		to={{
 			pathname: "/admin",
 		}}>
-		<img src="images/settings.svg"/>
+		<img src="images/settings.svg" alt="admin"/>
 	</Link>
 </div>;
 
 const App = (props) => {
-
 	return (
 		<div className="App">
 

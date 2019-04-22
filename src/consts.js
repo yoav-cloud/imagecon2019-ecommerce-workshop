@@ -1,7 +1,6 @@
 export const CLOUD = "ecomm40";
 export const PRESET =  "ecomm40upload";
 
-
 export const MAX_UPLOADS = 5;
 
 export const PRODUCT_ATTRIBUTES = ["name", "price", "brand", "discount"];

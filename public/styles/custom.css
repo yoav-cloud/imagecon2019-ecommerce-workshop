@@ -20,3 +20,16 @@ body {
 .product-price {
     margin-right: 6px;
 }
+
+.increment, .decrement {
+    font-size: 1px;
+}
+
+.product-quantity span {
+    background-color: #fff;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 10px;
+    width: 40px;
+    cursor: pointer;
+}
