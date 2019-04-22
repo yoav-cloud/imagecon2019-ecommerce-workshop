@@ -16,7 +16,6 @@ const AdminLink = () => <div className="adminLink">
 </div>;
 
 const App = (props) => {
-
 	return (
 		<div className="App">
 

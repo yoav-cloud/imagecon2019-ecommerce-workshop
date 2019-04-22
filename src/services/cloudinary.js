@@ -1,6 +1,19 @@
 import { Cloudinary } from "cloudinary-core";
-import { CREDS } from "../consts";
+import { generateImageResponsiveAttributes } from "cloudinary/lib/utils/srcsetUtils";
 
-var cloudinaryInstance = Cloudinary.new({ cloud_name: CREDS.cloudName });
+import { CLOUD } from "../consts";
 
-export default cloudinaryInstance;
+const cldInstance = Cloudinary.new({ cloud_name: CLOUD });
+
+export const getResponsiveAttributes = (id, min, max, transformation) =>
+	generateImageResponsiveAttributes(id, {}, {
+		sizes: true,
+		min_width: min,
+		max_width: max,
+		max_images: 4,
+		transformation: {transformation},
+	}, {
+		cloud_name: CLOUD,
+	});
+
+export default cldInstance;

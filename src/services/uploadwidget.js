@@ -1,4 +1,4 @@
-import { CREDS } from "../consts";
+import { CLOUD, PRESET } from "../consts";
 
 let widget;
 
@@ -10,8 +10,8 @@ const init = ({folder, callback, maxFiles}) => {
 			// eslint-disable-next-line
 			widget = self.cloudinary.createUploadWidget(
 				{
-					cloudName: CREDS.cloudName,
-					uploadPreset: CREDS.unsignedUploadPreset,
+					cloudName: CLOUD,
+					uploadPreset: PRESET,
 					singleUploadAutoClose: true,
 					text: {
 						en: {
