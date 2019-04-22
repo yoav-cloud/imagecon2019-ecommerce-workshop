@@ -25,9 +25,11 @@
     }
   }
 
-  //&.mlWidget, &.saveBtn {
-  //  align-self: center;
-  //  margin-bottom: 20px;
-  //  width: 150px;
-  //}
+  &.disabled {
+    background: #a5a5a5;
+
+    &:before {
+      background-image: none;
+    }
+  }
 }

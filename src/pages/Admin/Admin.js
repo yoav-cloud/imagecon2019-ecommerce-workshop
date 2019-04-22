@@ -4,7 +4,6 @@ import { inject } from "mobx-react";
 import { pick } from "lodash";
 import {
 	TYPES,
-	MAX_UPLOADS,
 	PRODUCT_ATTRIBUTES,
 	STATUS_MESSAGES
 } from "../../consts";
@@ -14,11 +13,7 @@ import Button from "../../components/Button/Button";
 import DetailsForm from "../../components/Forms/DetailsForm/DetailsForm";
 import ImagesUpload from "../../components/Forms/ImagesUpload/ImagesUpload";
 
-// import { getRandomString } from "../../helpers";
 // import { init as initMediaLibraryWidget } from "../../services/mlwidget";
-// import { init as initUploadWidget } from "../../services/uploadwidget";
-// import cloudinaryService from "../../services/cloudinary";
-
 
 import styles from "./Admin.module.scss";
 
@@ -29,16 +24,12 @@ const initialState = {
 	discount: 0,
 	items: [],
 	status: "",
-	maxUploads: MAX_UPLOADS,
 };
 
 const reducers = {
 	[TYPES.SET_DETAILS]: (state, payload) => ({ ...state, ...payload }),
 	[TYPES.SET_STATUS]: (state, payload) => ({ ...state, status: payload }),
-
-	// const getMaxUploadsAllowed = (items) => {
-// 	return MAX_UPLOADS - items; //this.state.items.length;
-// };
+	[TYPES.ADD_UPLOAD]: (state, payload) => ({ ...state, items: [...state.items, payload]})
 };
 
 const reducer = getReducer(reducers);
@@ -67,7 +58,8 @@ const Admin = () => {
 
 			<div className={styles.formContainer}>
 				<DetailsForm {...state} dispatch={dispatch}/>
-				<ImagesUpload/>
+
+				<ImagesUpload dispatch={dispatch} />
 
 				<div className={cx(styles.status, styles[`${state.status}`])}>
 					{STATUS_MESSAGES[state.status]}
@@ -75,6 +67,7 @@ const Admin = () => {
 			</div>
 
 			<Button action
+			        disabled={!state.items.length}
 			        title="Save Details"
 			        onClick={onSubmit}/>
 		</section>
@@ -82,33 +75,9 @@ const Admin = () => {
 };
 
 
-// mlWidget = {};
-// uploadWidget = {};
-
-
 // async componentDidMount() {
 // 	this.mlWidget = await initMediaLibraryWidget();
-//
-// 	this.uploadWidget = initUploadWidget({
-// 		maxFiles: this.getMaxUploadsAllowed(),
-// 		folder: `Products/${getRandomString()}`,
-// 		callback: this.uwCallback,
-// 	});
-// }
 
-// componentDidUpdate(prevProps: Props, prevState: State) {
-// 	if (prevState.items.length !== this.state.items.length) {
-// 		this.uploadWidget.update({ maxFiles: this.getMaxUploadsAllowed() });
-// 	}
-// }
-
-// uwCallback = (error, result) => {
-// 	if (result && result.event === "success") {
-// 		this.setState((prevState: Object) => ({ items: [...prevState.items, result.info] }));
-// 	} else if (result && result.event === "queues-end") {
-// 		this.uploadWidget.close();
-// 	}
-// };
 
 
 export default inject("appData")(Admin);

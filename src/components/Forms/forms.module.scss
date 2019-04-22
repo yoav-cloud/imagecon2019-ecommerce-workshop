@@ -85,27 +85,32 @@
     padding: 10px;
   }
 
-  .thumbsList {
+  .thumbsWrapper {
     display: flex;
     flex-wrap: wrap;
-    margin-left: 18px;
-    height: 232px;
-    overflow: scroll;
+    //border: 1px solid black;
+    //width: 100px;
+    //height: 100px;
+    //overflow: hidden;
+    //cursor: pointer;
+    //margin-bottom: 20px;
+    //margin-right: 20px;
+    //text-align: center;
+    align-items: center;
 
-    .thumbWrapper {
-      display: flex;
-      border: 1px solid black;
-      width: 100px;
-      height: 100px;
-      overflow: hidden;
-      cursor: pointer;
-      margin-bottom: 20px;
-      margin-right: 20px;
-      text-align: center;
-      align-items: center;
-      font-size: 16px;
+    img {
+      margin: 6px;
     }
   }
+
+  //.thumbsList {
+  //  display: flex;
+  //  flex-wrap: wrap;
+  //  margin-left: 18px;
+  //  height: 232px;
+  //  overflow: scroll;
+  //
+  //}
 }
 
 .priceContainer {
