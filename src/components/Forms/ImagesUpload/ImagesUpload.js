@@ -1,17 +1,19 @@
+/* eslint-disable */
 import React, { memo, useLayoutEffect, useState, useRef } from "react";
 import cx from "classnames";
 import Button from "../../../components/Button/Button";
 import styles from "../forms.module.scss";
 import cloudinary from "../../../services/cloudinary";
 import { getRandomFolderName } from "../../../helpers";
-//import { init as initUploadWidget } from "../../../services/uploadwidget";
-import { MAX_UPLOADS, TYPES, UPLOAD_PREVIEW } from "../../../consts";
+import { CLOUD, MAX_UPLOADS, PRESET, TYPES, UPLOAD_PREVIEW } from "../../../consts";
 
 const ImagesUpload = ({ dispatch }) => {
 	const [items, setItems] = useState([]);
 	const widgetRef = useRef();
 
 	useLayoutEffect(() => {
+
+		// uploadwidget :: insert upload widget
 
 	}, []);
 
@@ -22,7 +24,7 @@ const ImagesUpload = ({ dispatch }) => {
 
 				<div className={cx(styles.inputWrapper, styles.imagesWrapper)}>
 					<Button title="Add An Image" onClick={() => {
-
+						// uwopen :: open upload widget
 					}}/>
 
 					<div className={styles.thumbsWrapper}>
@@ -31,7 +33,9 @@ const ImagesUpload = ({ dispatch }) => {
 								resource_type: item.resource_type,
 								type: item.type,
 								...UPLOAD_PREVIEW
-							})} alt={item.public_id} key={item.public_id}/>)}
+							})} alt={item.public_id}
+							     title={item.public_id}
+							     key={item.public_id}/>)}
 					</div>
 				</div>
 			</fieldset>
