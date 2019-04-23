@@ -1,33 +1,34 @@
+/* eslint-disable */
 import React, { memo, useLayoutEffect, useState, useRef } from "react";
 import cx from "classnames";
 import Button from "../../../components/Button/Button";
 import styles from "../forms.module.scss";
 import cloudinary from "../../../services/cloudinary";
 import { getRandomFolderName } from "../../../helpers";
-import { init as initUploadWidget } from "../../../services/uploadwidget";
-import { MAX_UPLOADS, TYPES, UPLOAD_PREVIEW } from "../../../consts";
+import { CLOUD, MAX_UPLOADS, PRESET, TYPES, UPLOAD_PREVIEW } from "../../../consts";
 
 const ImagesUpload = ({ dispatch }) => {
 	const [items, setItems] = useState([]);
 	const widgetRef = useRef();
 
 	useLayoutEffect(() => {
-		const widget = initUploadWidget({
-			folder: `Products/${getRandomFolderName()}`,
-			maxFiles: MAX_UPLOADS,
-			callback: (error, result) => {
+		widgetRef.current = self.cloudinary.createUploadWidget({
+				cloudName: CLOUD,
+				uploadPreset: PRESET,
+
+				folder: `Products/${getRandomFolderName()}`,
+				maxFiles: MAX_UPLOADS,
+			},
+			(error, result) => {
 				if (result && result.event === "success") {
 					setItems((latestItems) => [...latestItems, result.info]);
 					dispatch({ type: TYPES.ADD_UPLOAD, payload: result.info });
 				}
 
 				if (result && result.event === "queues-end") {
-					widget.close();
+					widgetRef.current.close();
 				}
-			}
-		});
-
-		widgetRef.current = widget;
+			});
 	}, []);
 
 	return (
@@ -46,7 +47,9 @@ const ImagesUpload = ({ dispatch }) => {
 								resource_type: item.resource_type,
 								type: item.type,
 								...UPLOAD_PREVIEW
-							})} alt={item.public_id} key={item.public_id}/>)}
+							})} alt={item.public_id}
+							     title={item.public_id}
+							     key={item.public_id}/>)}
 					</div>
 				</div>
 			</fieldset>
