@@ -9,7 +9,7 @@ const MediaLibraryButton = () => {
 
 	useLayoutEffect(() => {
 		initMediaLibraryWidget()
-			.then((ml)=> mlRef.current = ml);
+			.then((ml) => mlRef.current = ml);
 	}, []);
 
 	return (
@@ -17,6 +17,5 @@ const MediaLibraryButton = () => {
 		        onClick={() => mlRef.current.show()}/>
 	);
 };
-
 
 export default MediaLibraryButton;
