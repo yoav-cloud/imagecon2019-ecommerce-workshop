@@ -14,7 +14,7 @@ const MediaLibraryButton = () => {
 
 	return (
 		<Button title="Media Library" id="mlButton" className={styles.mlButton}
-		        onClick={() => mlRef.current.show()}/>
+		        onClick={() => {}}/>
 	);
 };
 
