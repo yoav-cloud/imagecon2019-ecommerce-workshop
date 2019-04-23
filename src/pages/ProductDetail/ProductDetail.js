@@ -18,6 +18,7 @@ const ProductDetail = ({ location }: Object) => {
 						<div className="column is-7">
 							<Breadcrumb />
 							<ProductGallery image={imageItem.secureUrl}/>
+							{/* gallerymedia :: send product items to product gallery */}
 						</div>
 						<div className="column is-5">
 							<Info product={product}/>
