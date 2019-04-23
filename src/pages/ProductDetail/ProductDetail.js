@@ -16,7 +16,7 @@ const ProductDetail = ({ location }: Object) => {
 				<div className="container">
 					<div className="columns">
 						<div className="column is-7">
-							<Breadcrumb/>
+							<Breadcrumb />
 							<ProductGallery image={imageItem.secureUrl}/>
 						</div>
 						<div className="column is-5">

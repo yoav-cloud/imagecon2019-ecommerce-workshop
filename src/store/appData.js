@@ -44,7 +44,6 @@ const fetchProducts = () => {
 };
 
 const cart = observable({
-		//ids of
 		products: [],
 	},
 	{});
