@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
+import { CLOUD, SALE, BRAND} from "../../consts";
 
 const ProductGallery = ({ image }) => {
 	return (
@@ -9,8 +10,8 @@ const ProductGallery = ({ image }) => {
 						<div className="image-gallery-slide center"
 						     role="button"
 						     style={{ transform: "translate3d(0%, 0px, 0px)" }}>
-							<div className="image-gallery-image"><img
-								src={image} alt=""/></div>
+							<div className="image-gallery-image">
+								<img src={image} alt=""/></div>
 						</div>
 					</div>
 				</div>

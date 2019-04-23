@@ -39,3 +39,12 @@
 
   margin-bottom: 10px;
 }
+
+.adminButtons {
+  display: flex;
+  justify-content: center;
+
+  button {
+     margin-left: 10px;
+  }
+}
