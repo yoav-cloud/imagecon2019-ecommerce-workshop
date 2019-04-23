@@ -48,7 +48,6 @@ const ProductGallery = ({ mediaAssets }) => {
 		}
 	}, []);
 
-
 	return (
 		<div className="image-gallery " aria-live="polite">
 			<div className="image-gallery-content">

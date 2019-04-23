@@ -5,9 +5,9 @@ export const MAX_UPLOADS = 5;
 
 export const PRODUCT_ATTRIBUTES = ["name", "price", "brand", "discount"];
 
-export const PRODUCT_IMAGE_PREVIEW_TRANSFORMATION = {
-	width: 100,
-	height: 100,
+export const UPLOAD_PREVIEW = {
+	width: 200,
+	height: 150,
 	crop: "limit",
 	fetch_format: "auto",
 	quality: "auto"
@@ -21,12 +21,7 @@ export const STATUS_MESSAGES = {
 export const TYPES = {
 	SET_DETAILS: "SET_DETAILS",
 	SET_STATUS: "SET_STATUS",
-	// name: "name",
-	// price: "price",
-	// brand: "brand",
-	// discount: "discount",
-	// items: "items",
-	// status: "status",
+	ADD_UPLOAD: "ADD_UPLOAD",
 };
 
 export const SALE = [

@@ -5,7 +5,6 @@ const GridImage = ({ item }) => {
 
 	const transformation = [
 		{
-			crop: "fit",
 			quality: "auto",
 			fetchFormat: "auto",
 			dpr: 2,
@@ -16,7 +15,8 @@ const GridImage = ({ item }) => {
 		{ if: "$discount_ne_!0!" },
 		{
 			overlay: "badge_sale",
-			width: 800,
+			width: 0.4,
+			flags: "relative",
 			gravity: "north_west",
 		},
 		{ if: "end" }
@@ -24,8 +24,8 @@ const GridImage = ({ item }) => {
 
 	const respAttrs = getResponsiveAttributes(
 		item.publicId,
-		600,
-		1400,
+		400,
+		1000,
 		transformation);
 
 	const url = cloudinary.url(item.publicId, { transformation });

@@ -14,6 +14,10 @@ const getRandomString = (len = 10) =>
 		.map(() => CHARS.charAt(Math.floor(Math.random() * CHARS.length)))
 		.join("");
 
+const getRandomFolderName = () => {
+	const d = new Date();
+	return `${d.getFullYear()}${d.getMonth()+1}${d.getDate()}-${getRandomString()}`;
+};
 
 const camelizeKeys = (obj) =>
 	mapKeys(obj, (value, key) =>
@@ -22,5 +26,6 @@ const camelizeKeys = (obj) =>
 export {
 	calculateDiscountPrice,
 	getRandomString,
+	getRandomFolderName,
 	camelizeKeys,
 }
