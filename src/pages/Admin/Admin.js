@@ -12,8 +12,7 @@ import getReducer from "../../genericReducer";
 import Button from "../../components/Button/Button";
 import DetailsForm from "../../components/Forms/DetailsForm/DetailsForm";
 import ImagesUpload from "../../components/Forms/ImagesUpload/ImagesUpload";
-
-// import { init as initMediaLibraryWidget } from "../../services/mlwidget";
+import MediaLibraryButton from "../../components/Forms/MediaLibraryButton/MediaLibraryButton";
 
 import styles from "./Admin.module.scss";
 
@@ -29,7 +28,7 @@ const initialState = {
 const reducers = {
 	[TYPES.SET_DETAILS]: (state, payload) => ({ ...state, ...payload }),
 	[TYPES.SET_STATUS]: (state, payload) => ({ ...state, status: payload }),
-	[TYPES.ADD_UPLOAD]: (state, payload) => ({ ...state, items: [...state.items, payload]})
+	[TYPES.ADD_UPLOAD]: (state, payload) => ({ ...state, items: [...state.items, payload] })
 };
 
 const reducer = getReducer(reducers);
@@ -57,7 +56,7 @@ const Admin = () => {
 			<h1>Add Product</h1>
 
 			<div className={styles.formContainer}>
-				<DetailsForm {...state} dispatch={dispatch}/>
+				<DetailsForm {...state} dispatch={dispatch} />
 
 				<ImagesUpload dispatch={dispatch} />
 
@@ -66,18 +65,16 @@ const Admin = () => {
 				</div>
 			</div>
 
-			<Button action
-			        disabled={!state.items.length}
-			        title="Save Details"
-			        onClick={onSubmit}/>
+			<div className={styles.adminButtons}>
+				<Button action
+				        disabled={!state.items.length}
+				        title="Save"
+				        onClick={onSubmit} />
+
+				<MediaLibraryButton />
+			</div>
 		</section>
 	);
 };
-
-
-// async componentDidMount() {
-// 	this.mlWidget = await initMediaLibraryWidget();
-
-
 
 export default inject("appData")(Admin);

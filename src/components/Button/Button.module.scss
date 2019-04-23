@@ -27,6 +27,8 @@
 
   &.disabled {
     background: #a5a5a5;
+    cursor: default;
+    color: #eaeaea;
 
     &:before {
       background-image: none;

@@ -1,9 +1,9 @@
-import React, { memo, useEffect, useState, useRef } from "react";
+import React, { memo, useLayoutEffect, useState, useRef } from "react";
 import cx from "classnames";
 import Button from "../../../components/Button/Button";
 import styles from "../forms.module.scss";
 import cloudinary from "../../../services/cloudinary";
-import { getRandomString } from "../../../helpers";
+import { getRandomFolderName } from "../../../helpers";
 import { init as initUploadWidget } from "../../../services/uploadwidget";
 import { MAX_UPLOADS, TYPES, UPLOAD_PREVIEW } from "../../../consts";
 
@@ -11,39 +11,24 @@ const ImagesUpload = ({ dispatch }) => {
 	const [items, setItems] = useState([]);
 	const widgetRef = useRef();
 
-	// console.log("!!!!!!!!!!!!! RENDERING IMAGES UPLOAD ", items);
-
-	useEffect(() => {
-		const uploaded = items;
-
-		console.log("!!!!!!!!! about to add upload widget !!!!", uploaded);
-
-		if (!widgetRef.current) {
-			const widget = initUploadWidget({
-				folder: `Products/${getRandomString()}`,
-				maxFiles: MAX_UPLOADS,
-				callback: (error, result) => {
-
-					console.log("!!!!!!!!!!!! UW CALLBACK ITEMS = ", uploaded);
-
-					if (result && result.event === "success") {
-						setItems([...uploaded, result.info]);
-						dispatch({ type: TYPES.ADD_UPLOAD, payload: result.info });
-
-						widget.update({
-							maxFiles: Math.min((MAX_UPLOADS - uploaded.length), 0),
-						});
-					}
-
-					if (result && result.event === "queues-end") {
-						widget.close();
-					}
+	useLayoutEffect(() => {
+		const widget = initUploadWidget({
+			folder: `Products/${getRandomFolderName()}`,
+			maxFiles: MAX_UPLOADS,
+			callback: (error, result) => {
+				if (result && result.event === "success") {
+					setItems((latestItems) => [...latestItems, result.info]);
+					dispatch({ type: TYPES.ADD_UPLOAD, payload: result.info });
 				}
-			});
 
-			widgetRef.current = widget;
-		}
-	}, [items]);
+				if (result && result.event === "queues-end") {
+					widget.close();
+				}
+			}
+		});
+
+		widgetRef.current = widget;
+	}, []);
 
 	return (
 		<div className={styles.newProductForm}>
@@ -51,7 +36,9 @@ const ImagesUpload = ({ dispatch }) => {
 				<legend>Product Images</legend>
 
 				<div className={cx(styles.inputWrapper, styles.imagesWrapper)}>
-					<Button title="Add An Image" onClick={() => {widgetRef.current.open()}} />
+					<Button title="Add An Image" onClick={() => {
+						widgetRef.current.open();
+					}}/>
 
 					<div className={styles.thumbsWrapper}>
 						{items.map((item) =>
