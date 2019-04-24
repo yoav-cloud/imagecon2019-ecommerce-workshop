@@ -16,7 +16,9 @@ const MediaLibraryButton = () => {
 	}, []);
 
 	return (
-		<Button title="Media Library" id="mlButton" className={styles.mlButton}
+		<Button title="Media Library"
+		        id="mlButton"
+		        className={styles.mlButton}
 		        onClick={() => {
 			        // mlshow :: show the media library widget
 		        }}/>

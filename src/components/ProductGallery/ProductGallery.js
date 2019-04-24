@@ -2,7 +2,11 @@ import React, { useLayoutEffect } from "react";
 import { CLOUD } from "../../consts";
 
 const SALE = [
-	{ variables: [["$discount", "ctx:!discount!"], ["$brand", "ctx:!brand!"]] },
+	{
+		variables: [
+			["$discount", "ctx:!discount!"],
+			["$brand", "ctx:!brand!"]]
+	},
 	{ if: "$discount_ne_!0!" },
 	{
 		overlay: "badge",
@@ -19,7 +23,10 @@ const SALE = [
 
 const BRAND = [
 	{ overlay: "$brand", width: 500 },
-	{ gravity: "south_west", x: 30, y: -30, flags: "layer_apply" }
+	{
+		gravity: "south_west", x: 30, y: -30,
+		flags: "layer_apply"
+	}
 ];
 
 // gallerytransf :: gallery transformation object
