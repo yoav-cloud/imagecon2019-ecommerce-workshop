@@ -25,6 +25,7 @@ export const TYPES = {
 };
 
 export const SALE = [
+	{ variables: [["$discount", "ctx:!discount!"], ["$brand", "ctx:!brand!"]] },
 	{ if: "$discount_ne_!0!" },
 	{
 		overlay: "badge",
