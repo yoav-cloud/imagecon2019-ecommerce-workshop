@@ -18,6 +18,24 @@ const ImagesUpload = ({ dispatch }) => {
 
 				folder: `Products/${getRandomFolderName()}`,
 				maxFiles: MAX_UPLOADS,
+
+				styles: {
+					palette: {
+						window: "#F7F0F0",
+						sourceBg: "#788278",
+						windowBorder: "#C3D0C1",
+						tabIcon: "#000000",
+						inactiveTabIcon: "#555a5f",
+						menuIcons: "#555a5f",
+						link: "#5DA741",
+						action: "#63A214",
+						inProgress: "#0D752E",
+						complete: "#339933",
+						error: "#cc0000",
+						textDark: "#000000",
+						textLight: "#fcfffd"
+					},
+				},
 			},
 			(error, result) => {
 				if (result && result.event === "success") {
