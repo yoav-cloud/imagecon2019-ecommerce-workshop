@@ -11,7 +11,9 @@ const GridImage = ({ item }) => {
 	const url = item.secureUrl;
 
 	return (
-		<img src={url} alt={item.publicId} /*{...respAttrs}*/ />
+		<img src={url}
+		     alt={item.publicId}
+			/*{...respAttrs}*/ />
 	);
 };
 
