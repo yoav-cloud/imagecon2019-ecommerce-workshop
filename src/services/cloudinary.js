@@ -2,24 +2,31 @@ import { Cloudinary } from "cloudinary-core";
 import { generateImageResponsiveAttributes } from "cloudinary/lib/utils/srcsetUtils";
 import { CLOUD } from "../consts";
 
+const BREAK_POINTS = 4;
+
 const cldInstance = Cloudinary.new({ cloud_name: CLOUD });
 
-//so React doesnt complain
-const replaceSrcsetProp = (obj) => {
-	obj.srcSet = obj.srcset;
-	delete obj.srcset;
-	return obj;
-};
+export const getResponsiveAttributes = (id, min, max, transformation) => {
 
-export const getResponsiveAttributes = (id, min, max, transformation) =>
-	replaceSrcsetProp(generateImageResponsiveAttributes(id, {}, {
-		sizes: true,
+	const sizes = new Array(BREAK_POINTS)
+		.fill(null)
+		.map((n, i) => `(max-width: ${min * (i + 1)}px) ${(min * (i + 1)) / 2}px`);
+
+	const srcset = generateImageResponsiveAttributes(id, {}, {
+		// sizes: true,
 		min_width: min,
 		max_width: max,
-		max_images: 4,
+		max_images: BREAK_POINTS,
 		transformation: { transformation },
 	}, {
 		cloud_name: CLOUD,
-	}));
+	});
+
+	return {
+		...srcset,
+		sizes,
+	};
+};
+
 
 export default cldInstance;

@@ -31,7 +31,10 @@ const GridImage = ({ item }) => {
 	const url = cloudinary.url(item.publicId, { transformation });
 
 	return (
-		<img src={url} alt={item.publicId} {...respAttrs} />
+		<img src={url}
+		     alt={item.publicId}
+		     srcSet={respAttrs.srcset}
+		     sizes={respAttrs.sizes}/>
 	);
 };
 
