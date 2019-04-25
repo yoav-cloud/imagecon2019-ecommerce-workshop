@@ -13,7 +13,9 @@ const GridImage = ({ item }) => {
 	return (
 		<img src={url}
 		     alt={item.publicId}
-			/*{...respAttrs}*/ />
+		     // srcSet={respAttrs.srcset}
+		     // sizes={respAttrs.sizes}
+		/>
 	);
 };
 
