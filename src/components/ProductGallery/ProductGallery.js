@@ -1,12 +1,31 @@
 import React, { useLayoutEffect } from "react";
-import { CLOUD, SALE, BRAND} from "../../consts";
+import { CLOUD, SALE, BRAND } from "../../consts";
 
 const galleryTransformation = {
 	transformation: [
-		{ variables: [["$discount", "ctx:!discount!"], ["$brand", "ctx:!brand!"]] },
-		{ width: 1000, height: 1000, crop: "fill", gravity: "auto" },
-		...SALE,
-		...BRAND,
+		{
+			variables: [
+				["$discount", "ctx:!discount!"],
+				["$brand", "ctx:!brand!"]]
+		},
+		{
+			width: 1000,
+			height: 1000,
+			crop: "fill",
+			gravity: "auto"
+		},
+		//...SALE,
+		//...BRAND,
+	]
+};
+
+const galleryVideoTransformation = {
+	transformation: [
+		{
+			width: 1000,
+			height: 1000,
+			crop: "fill"
+		},
 	]
 };
 
@@ -19,7 +38,9 @@ const ProductGallery = ({ mediaAssets }) => {
 
 			mediaAssets: mediaAssets.map(asset => ({
 				...asset,
-				transformation: galleryTransformation,
+				transformation: asset.mediaType === "video" ?
+					galleryVideoTransformation :
+					galleryTransformation,
 			})),
 
 			carouselLocation: "bottom",
