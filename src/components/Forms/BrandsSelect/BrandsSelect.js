@@ -1,6 +1,6 @@
 import React from "react";
 
-export const BRANDS = ["Speeder", "Sports", "Footware"];
+export const BRANDS = ["Speeder", "Sports", "Footware", "Fashion"];
 
 const BrandsSelect = ({value, onChange}) =>
 	<select name="brand" value={value} onChange={onChange}>

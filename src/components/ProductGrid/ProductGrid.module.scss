@@ -5,3 +5,9 @@
   align-items: center;
   justify-content: center;
 }
+
+.spinner {
+  width: 200px;
+  height: 200px;
+  background-image: url('./spinner.svg');
+}

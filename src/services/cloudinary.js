@@ -1,6 +1,7 @@
 import { Cloudinary } from "cloudinary-core";
 import { generateImageResponsiveAttributes } from "cloudinary/lib/utils/srcsetUtils";
 import { CLOUD } from "../consts";
+import "cloudinary-video-player";
 
 const BREAK_POINTS = 4;
 
@@ -28,5 +29,6 @@ export const getResponsiveAttributes = (id, min, max, transformation) => {
 	};
 };
 
+export const videoPlayer = cldInstance.videoPlayer.bind(cldInstance);
 
 export default cldInstance;
