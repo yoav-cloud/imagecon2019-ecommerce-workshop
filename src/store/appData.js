@@ -23,7 +23,7 @@ const addProduct = action((...newProducts) => {
 });
 
 const serializeProductItems = (product) =>
-	product.items.map(camelizeKeys);
+	product.items.map((item)=>({...camelizeKeys(item), mediaType: item.resource_type}));
 
 const setProducts = action((newProducts) => {
 	products.replace(newProducts.map((product) => ({
