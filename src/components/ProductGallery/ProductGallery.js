@@ -61,7 +61,9 @@ const ProductGallery = ({ mediaAssets }) => {
 
 			mediaAssets: mediaAssets.map(asset => ({
 				...asset,
-				transformation: galleryTransformation,
+				transformation: asset.mediaType === "video" ?
+					galleryVideoTransformation :
+					galleryTransformation,
 			})),
 
 			carouselLocation: "bottom",
