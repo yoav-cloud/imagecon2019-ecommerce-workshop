@@ -16,16 +16,31 @@ const HomeSlider = () => {
 			});
 
 		player.source(
-			"banner-video", {
-				transformation: [{
-					width: 1344,
-					height: 320,
-					crop: "fill",
-					y: 200,
-					quality: 70,
-					videoCodec: "auto",
-					audioCodec: "none",
-				}]
+			"banner-video-hls", {
+				poster: {
+					publicId: "banner-still",
+					transformation: [
+						{
+							width: 1344,
+							height: 320,
+							crop: "fill",
+						}
+					]
+				},
+				transformation: [
+					{
+						streamingProfile: "hd",
+					},
+					{
+						width: 1344,
+						height: 320,
+						crop: "fill",
+						y: 200,
+						quality: 70,
+						videoCodec: "auto",
+						audioCodec: "none",
+					}],
+				sourceTypes: ["hls"],
 			});
 
 	}, []);
