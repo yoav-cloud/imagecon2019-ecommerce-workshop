@@ -14,7 +14,7 @@ const HomeSlider = () => {
 	}, []);
 
 	return (
-		<section className="section" style={{ padding: "0px" }}>
+		<section className={cx("section", styles.section)}>
 			<div className="container">
 				<div className={cx("home-slider", styles.homeSlider)}>
 					{/*rendervid :: render video element */}
