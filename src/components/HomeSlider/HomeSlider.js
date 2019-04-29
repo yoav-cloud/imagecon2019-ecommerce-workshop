@@ -18,7 +18,7 @@ const HomeSlider = () => {
 		player.source(
 			"banner-video", {
 				transformation: [{
-					width: 1570,
+					width: 1344,
 					height: 320,
 					crop: "fill",
 					y: 200,
@@ -31,7 +31,7 @@ const HomeSlider = () => {
 	}, []);
 
 	return (
-		<section className="section" style={{ padding: "0px" }}>
+		<section className={cx("section", styles.section)}>
 			<div className="container">
 				<div className={cx("home-slider", styles.homeSlider)}>
 					<video
