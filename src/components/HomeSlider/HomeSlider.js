@@ -1,15 +1,32 @@
 import React, { useLayoutEffect } from "react";
 import cx from "classnames";
 import styles from "./HomeSlider.module.scss";
-//impvid :: import video player
+import { videoPlayer } from "../../services/cloudinary";
 
 const HomeSlider = () => {
 
 	useLayoutEffect(() => {
 
-		//vidplay :: initialize video player
+		const player = videoPlayer(
+			"banner-player",
+			{
+				loop: true,
+				controls: false,
+				autoplay: true,
+			});
 
-		//vidsrc :: set the video source and transformations
+		player.source(
+			"banner-video", {
+				transformation: [{
+					width: 1570,
+					height: 320,
+					crop: "fill",
+					y: 200,
+					quality: 70,
+					videoCodec: "auto",
+					audioCodec: "none",
+				}]
+			});
 
 	}, []);
 
@@ -17,9 +34,10 @@ const HomeSlider = () => {
 		<section className="section" style={{ padding: "0px" }}>
 			<div className="container">
 				<div className={cx("home-slider", styles.homeSlider)}>
-					{/*rendervid :: render video element */}
-					<img src="https://res.cloudinary.com/ecomm40/image/upload/v1556563365/banner-still.png" alt="banner"/>
-
+					<video
+						id="banner-player"
+						className="cld-video-player">
+					</video>
 					<span className={styles.bannerText}>Cloudinary's Store</span>
 				</div>
 			</div>
