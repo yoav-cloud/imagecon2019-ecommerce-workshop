@@ -1,5 +1,10 @@
 const cloudinary = require("../../cloudinary"),
-	pick = require("lodash/pick");
+	pick = require("lodash/pick"),
+	LRU = require("lru-cache");
+
+const productsCache = new LRU({
+	maxAge: 1000 * 5, //5 seconds cache
+});
 
 const ITEM_PROPS = [
 	"public_id",
@@ -15,6 +20,28 @@ const ITEM_PROPS = [
 const last = (arr) => arr[arr.length - 1];
 
 const productsFolder = "Products";
+
+const getResponse = (result) => ({
+	response: {
+		...result,
+		success: !result.error,
+	}
+});
+
+const cacheProducts = (products) => {
+	productsCache.set("products", products);
+	return products;
+};
+
+const getCachedProducts = () => {
+	const products = productsCache.get("products");
+
+	if (products) {
+		console.log("-------- found products in cache -----");
+	}
+
+	return products
+};
 
 module.exports = (req, info) => {
 
@@ -57,18 +84,16 @@ module.exports = (req, info) => {
 		};
 	};
 
-	return doSearch()
+	const products = getCachedProducts();
+
+	return products ? getResponse(products) : doSearch()
 		.then(getProducts)
+		.then(cacheProducts)
 		.catch((error) => {
 			console.log("!!!!!!!!!! SEARCH ERROR !!!! ", error);
 			return {
 				error: true,
 			}
 		})
-		.then((result) => ({
-			response: {
-				...result,
-				success: !result.error,
-			}
-		}))
+		.then(getResponse);
 };

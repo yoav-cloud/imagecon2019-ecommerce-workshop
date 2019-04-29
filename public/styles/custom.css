@@ -2,14 +2,19 @@ body {
     font-family: 'Josefin Sans', sans-serif;
 }
 
+.App {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 .adminLink {
     position: absolute;
     right: 1px;
-
     cursor: pointer;
-
     z-index: 10;
+    top: 168px;
 }
 
 .adminLink img {
