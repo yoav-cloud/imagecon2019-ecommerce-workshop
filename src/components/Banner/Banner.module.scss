@@ -4,10 +4,15 @@
   max-width: 1344px;
 }
 
-.homeSlider{
+.banner{
   width: 100%;
   min-height: 200px;
+  max-height: 320px;
   position: relative;
+
+  img {
+    max-height: 100%;
+  }
 }
 
 .bannerText {
@@ -18,4 +23,6 @@
   font-weight: bold;
   font-size: 52px;
   color: #fff;
+  width: 100%;
+  text-align: center;
 }
