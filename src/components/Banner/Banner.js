@@ -1,9 +1,9 @@
 import React, { useLayoutEffect } from "react";
 import cx from "classnames";
-import styles from "./HomeSlider.module.scss";
+import styles from "./Banner.module.scss";
 //impvid :: import video player
 
-const HomeSlider = () => {
+const Banner = () => {
 
 	useLayoutEffect(() => {
 
@@ -14,11 +14,11 @@ const HomeSlider = () => {
 	}, []);
 
 	return (
-		<section className="section" style={{ padding: "0px" }}>
+		<section className={cx("section", styles.section)}>
 			<div className="container">
-				<div className={cx("home-slider", styles.homeSlider)}>
+				<div className={cx("home-slider", styles.banner)}>
 					{/*rendervid :: render video element */}
-					<img src="https://res.cloudinary.com/ecomm40/image/upload/v1556563365/banner-still.png" alt="banner"/>
+					<img src="https://res.cloudinary.com/ecomm40/image/upload/h_320,w_1340/v1556563365/banner-still.png" alt="banner"/>
 
 					<span className={styles.bannerText}>Cloudinary's Store</span>
 				</div>
@@ -26,4 +26,4 @@ const HomeSlider = () => {
 		</section>);
 };
 
-export default HomeSlider;
+export default Banner;
