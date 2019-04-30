@@ -15,7 +15,7 @@ const ProductDetail = ({ location }: Object) => {
 			<section className="section section-product">
 				<div className="container">
 					<div className="columns">
-						<div className="column is-7">
+						<div className="column is-7" style={{minWidth: "450px"}}>
 							<Breadcrumb />
 							<ProductGallery image={imageItem.secureUrl}
 							                mediaAssets={product.items} />

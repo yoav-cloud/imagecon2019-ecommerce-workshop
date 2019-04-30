@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from "react";
 import { inject, } from "mobx-react";
 import ProductGrid from "../../components/ProductGrid/ProductGrid";
-import HomeSlider from "../../components/HomeSlider/HomeSlider";
+import Banner from "../../components/Banner/Banner";
 
 const ProductListingPage = (props) => {
 
@@ -10,7 +10,7 @@ const ProductListingPage = (props) => {
 	}, []);
 
 	return <Fragment>
-		<HomeSlider/>
+		<Banner />
 		<section className="section">
 			<div className="container">
 				<div className="title is-4 has-text-centered">BEST SELLERS</div>
