@@ -1,15 +1,47 @@
 import React, { useLayoutEffect } from "react";
 import cx from "classnames";
 import styles from "./Banner.module.scss";
-//impvid :: import video player
+import { videoPlayer } from "../../services/cloudinary";
 
 const Banner = () => {
 
 	useLayoutEffect(() => {
 
-		//vidplay :: initialize video player
+		const player = videoPlayer(
+			"banner-player",
+			{
+				loop: true,
+				controls: false,
+				autoplay: true,
+			});
 
-		//vidsrc :: set the video source and transformations
+		player.source(
+			"banner-video-hls", {
+				poster: {
+					publicId: "banner-still",
+					transformation: [
+						{
+							width: 1344,
+							height: 320,
+							crop: "fill",
+						}
+					]
+				},
+				transformation: [
+					{
+						streamingProfile: "hd",
+					},
+					{
+						width: 1344,
+						height: 320,
+						crop: "fill",
+						y: 200,
+						quality: 70,
+						videoCodec: "auto",
+						audioCodec: "none",
+					}],
+				sourceTypes: ["hls"],
+			});
 
 	}, []);
 
@@ -17,9 +49,10 @@ const Banner = () => {
 		<section className={cx("section", styles.section)}>
 			<div className="container">
 				<div className={cx("home-slider", styles.banner)}>
-					{/*rendervid :: render video element */}
-					<img src="https://res.cloudinary.com/ecomm40/image/upload/h_320,w_1340/v1556563365/banner-still.png" alt="banner"/>
-
+					<video
+						id="banner-player"
+						className="cld-video-player">
+					</video>
 					<span className={styles.bannerText}>Cloudinary's Store</span>
 				</div>
 			</div>
