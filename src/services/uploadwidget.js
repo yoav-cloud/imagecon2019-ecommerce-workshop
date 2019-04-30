@@ -1,21 +1,35 @@
-import { execute } from "./api";
-import { CREDS } from "../Constants";
+/* eslint-disable */
+import { CLOUD, PRESET } from "../consts";
 
-const init = async (options, callback: Function) => {
-  // eslint-disable-next-line
-  var myWidget = self.cloudinary.createUploadWidget(
-    {
-      cloudName: CREDS.cloudName,
-      uploadPreset: CREDS.unsignedUploadPreset,
-      singleUploadAutoClose: true,
-      ...options
-    },
-    (error, result) => {
-      console.log(error, result);
-      callback && callback(error, result);
-    }
-  );
-  return myWidget;
+let widget;
+
+const init = ({folder, maxFiles, callback}) => {
+
+	if (self.cloudinary && self.cloudinary.createUploadWidget) {
+		if (!widget) {
+
+			widget = self.cloudinary.createUploadWidget(
+				{
+					cloudName: CLOUD,
+					uploadPreset: PRESET,
+					singleUploadAutoClose: true,
+					maxFiles,
+					folder,
+				},
+				(error, result) => {
+					console.log(error, result);
+					callback && callback(error, result);
+				}
+			);
+		} else {
+			widget.update({
+				folder,
+				maxFiles,
+			});
+		}
+	}
+
+	return widget;
 };
 
 export { init };

@@ -1,4 +1,5 @@
 import {observable, action} from "mobx";
+import { camelizeKeys } from "../helpers";
 import bindObjectProps from "./bindObjectProps";
 import request from "../services/api";
 
@@ -21,8 +22,14 @@ const addProduct = action((...newProducts) => {
 	products.replace(products.concat(newProducts));
 });
 
+const serializeProductItems = (product) =>
+	product.items.map((item)=>({...camelizeKeys(item), mediaType: item.resource_type}));
+
 const setProducts = action((newProducts) => {
-	products.replace(newProducts);
+	products.replace(newProducts.map((product) => ({
+		...product,
+		items:  serializeProductItems(product),
+	})));
 });
 
 const fetchProducts = () => {
@@ -37,7 +44,6 @@ const fetchProducts = () => {
 };
 
 const cart = observable({
-		//ids of
 		products: [],
 	},
 	{});

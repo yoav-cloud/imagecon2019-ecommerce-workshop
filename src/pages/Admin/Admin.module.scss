@@ -1,113 +1,50 @@
-.admin {
-    display: flex;
-    flex-direction: column;
 
-    .newProductForm {
-        display: flex;
-        align-self: center;
-        height: 430px;
 
-        fieldset {
-            margin: 20px;
-            border: 1px solid black;
-            // height: 100%;
+.adminSection {
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
 
-            legend {
-                width: auto;
-            }
+  h1 {
+    font-size: 28px;
+    font-weight: bold;
+  }
+}
 
-            &.details {
-                width: 500px;
-            }
+.status {
+  width: 100%;
 
-            &.images {
-                width: 280px;
-                height: 300px;
+  &.success {
+    text-align: center;
+    font-weight: 900;
+    color: green;
+  }
 
-                .imagesContainer {
+  &.error {
+    text-align: center;
+    font-weight: 900;
+    color: red;
+  }
+}
 
-                }
-            }
+.formContainer {
+  background: #eeeeee;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
 
-        }
+  fieldset {
+    border: none;
+  }
 
-        .controls {
-            margin: 20px;
-            height: 70px;
-            display: flex;
-            flex-direction: column;
-        }
+  margin-bottom: 10px;
+}
 
-        .success {
-            text-align: center;
-            font-weight: 900;
-            color: green;
-        }
+.adminButtons {
+  display: flex;
+  justify-content: center;
 
-        .error {
-            text-align: center;
-            font-weight: 900;
-            color: red;
-        }
-
-        .inputWrapper {
-            display: flex;
-            flex-direction: column;
-            margin: 30px;
-            font-size: 16px;
-
-            input, select {
-                margin-bottom: 20px;
-            }
-
-            input {
-                width: 300px;
-
-                &[type='number'] {
-                    width: 70px;
-                }
-            }
-            select {
-                width: 150px;
-            }
-        }
-
-        .thumbsList {
-            display: flex;
-            flex-wrap: wrap;
-            margin-left: 18px;
-            height: 232px;
-            overflow: scroll;
-
-            .thumbWrapper {
-                display: flex;
-                border: 1px solid black;
-                width: 100px;
-                height: 100px;
-                overflow: hidden;
-                cursor: pointer;
-                margin-bottom: 20px;
-                margin-right: 20px;
-                text-align: center;
-                align-items: center;
-                font-size: 16px;
-            }
-        }
-    }
-
-    button {
-        height: 40px;
-        width: 100px;
-        background: #D10024;
-        color: #FFF;
-        font-weight: 700;
-        border: none;
-        border-radius: 5px;
-
-        &.mlWidget, &.saveBtn {
-            align-self: center;
-            margin-bottom: 20px;
-            width: 150px;
-        }
-    }
+  button {
+     margin-left: 10px;
+  }
 }

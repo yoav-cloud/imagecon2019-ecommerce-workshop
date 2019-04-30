@@ -1,0 +1,100 @@
+.newProductForm {
+  flex-direction: column;
+  display: flex;
+  align-self: center;
+  min-height: 400px;
+  max-width: 600px;
+  flex-grow: 2;
+
+  fieldset {
+    margin: 20px 0;
+    padding: 30px;
+    min-width: 350px;
+
+    legend {
+      text-align: left;
+      margin-left: 30px;
+      font-size: 22px;
+      width: auto;
+    }
+
+    &.details {
+
+    }
+
+    &.images {
+      //width: 300px;
+    }
+  }
+
+  .controls {
+    margin: 20px;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .inputWrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 0 30px;
+    font-size: 16px;
+
+    .formRow {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      justify-items: left;
+    }
+
+    .formRowPrice {
+      margin-right: 12px;
+    }
+
+    label {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 0px;
+      line-height: 1;
+    }
+
+    input, select {
+      border-radius: 4px;
+      border-width: 1px;
+      border-color: #828282;
+      border-style: solid;
+      height: 26px;
+      width: 240px;
+    }
+
+    input {
+      &[type='number'] {
+        width: 110px;
+      }
+    }
+  }
+
+  .imagesWrapper {
+    background: #e2e2e2;
+    padding: 10px;
+
+    button {
+      margin-bottom: 10px;
+    }
+  }
+
+  .thumbsWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    img {
+      margin: 6px;
+    }
+  }
+}
+
+.priceContainer {
+  display: flex;
+}
