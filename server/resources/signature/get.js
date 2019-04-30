@@ -4,7 +4,7 @@ module.exports = () => {
 
 	const params = {
 		cloud_name: process.env.CLD_CLOUD,
-		username: "yoav+imagecon2019@cloudinary.com",
+		username: process.env.CLD_USER,
 		timestamp: Math.floor(Date.now() / 1000), // in case of signature login
 	};
 

@@ -52,7 +52,10 @@ const update = (id, options) => {
 		});
 };
 
+const uploader = cloudinary.v2.uploader;
+
 module.exports = {
 	search,
 	update,
+	uploader
 };

@@ -1,0 +1,40 @@
+body {
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.adminLink {
+    position: absolute;
+    right: 1px;
+    cursor: pointer;
+    z-index: 10;
+    top: 168px;
+}
+
+.adminLink img {
+    width: 36px;
+    height: 36px;
+}
+
+.product-price {
+    margin-right: 6px;
+}
+
+.increment, .decrement {
+    font-size: 1px;
+}
+
+.product-quantity span {
+    background-color: #fff;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 10px;
+    width: 40px;
+    cursor: pointer;
+}
