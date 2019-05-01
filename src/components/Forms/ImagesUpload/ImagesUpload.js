@@ -23,7 +23,7 @@ const ImagesUpload = ({ dispatch }) => {
 				<legend>Product Images</legend>
 
 				<div className={cx(styles.inputWrapper, styles.imagesWrapper)}>
-					<Button title="Add An Image" onClick={() => {
+					<Button title="Add Media" onClick={() => {
 						// uwopen :: open upload widget
 					}}/>
 
