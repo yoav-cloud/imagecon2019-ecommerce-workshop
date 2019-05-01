@@ -57,3 +57,15 @@ or
 	npm run start
 
 ```
+
+## Resources
+
+[Sign Up To Cloudinary](https://cloudinary.com/signup)
+
+* [Image Transformations](https://cloudinary.com/documentation/image_transformations)
+* [Video Transformations](https://cloudinary.com/documentation/video_manipulation_and_delivery)
+* [Upload Widget](https://cloudinary.com/documentation/upload_widget)
+* [Media Library Widget](https://cloudinary.com/documentation/media_library_widget)
+* [Product Gallery](https://cloudinary.com/documentation/product_gallery)
+* [Video Player](https://cloudinary.com/documentation/cloudinary_video_player)
+
